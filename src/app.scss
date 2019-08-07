@@ -1,0 +1,40 @@
+$mainDefaultColor: #1F1F1F; // 主体背景色
+
+
+%absCenterFlex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+%absCenterPos {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+@mixin lastChildNoMargin($direction, $lineLastNumber: none) {
+  @if $lineLastNumber != none {
+    &:nth-child(#{$lineLastNumber}) {
+      margin-#{$direction}: 0;
+    }
+  }@else {
+    &:last-child {
+      margin-#{$direction}: 0;
+    }
+  }
+}
+
+@mixin aInitial($defaultColor, $activeColor) {
+  color: $defaultColor;
+  &.visited {
+    color: $defaultColor;
+  }
+  &:hover {
+    color: $activeColor;
+  }
+  &:active {
+    color: $activeColor;
+  }
+}

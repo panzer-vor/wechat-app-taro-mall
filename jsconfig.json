@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "actions/*": ["./src/store/actions/*"],
+      "utils/*": ["./src/util/*"],
+      "config/*": ["./src/config/*"]
+    }
+  }
+}
