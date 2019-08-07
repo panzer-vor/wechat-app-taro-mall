@@ -2,15 +2,12 @@ import Taro from '@tarojs/taro'
 import {
   PUBLIC_URL
 } from 'config/globalConfig'
-import R from 'ramda'
 
 const ContentType = {
   'json': 'application/json',
   'form': 'application/x-www-form-urlencoded',
   'formData': 'multipart/form-data',
 }
-
-
 
 export const request = ({
   uri,
