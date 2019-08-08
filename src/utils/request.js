@@ -2,7 +2,6 @@ import Taro from '@tarojs/taro'
 import {
   PUBLIC_URL
 } from 'config/globalConfig'
-import R from 'ramda'
 
 const ContentType = {
   'json': 'application/json',
