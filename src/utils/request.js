@@ -2,15 +2,12 @@ import Taro from '@tarojs/taro'
 import {
   PUBLIC_URL
 } from 'config/globalConfig'
-import R from 'ramda'
 
 const ContentType = {
   'json': 'application/json',
   'form': 'application/x-www-form-urlencoded',
   'formData': 'multipart/form-data',
 }
-
-
 
 export const request = ({
   uri,
@@ -19,9 +16,9 @@ export const request = ({
   publicUrl = PUBLIC_URL,
   loading = true,
   method = 'GET'
-}) => {
-  return new Promise((resolve, reject) => {
-    if (loading) Taro.showLoading({title: '加载中，请稍候'})
+}) => 
+  new Promise((resolve, reject) => {
+    loading && Taro.showLoading({title: '加载中，请稍候'})
 
     Taro.request({
       url: `${publicUrl}${uri}`,
@@ -42,12 +39,14 @@ export const request = ({
         .then(() => reject(error))
       },
       complete() {
-        if (loading) Taro.hideLoading()
+        loading && Taro.hideLoading()
       }
     })
   })
-}
 
-export const get = (config) => request({...config, method: 'GET'})
 
-export const post = (config) => request({...config, method: 'POST'}) 
+export const get = (config) => 
+  request({ ...config, method: 'GET' })
+
+export const post = (config) => 
+  request({ ...config, method: 'POST'}) 
