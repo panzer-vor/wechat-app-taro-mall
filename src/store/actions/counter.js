@@ -14,13 +14,12 @@ export const minus = () => ({
 })
 
 // 异步的action
-export const asyncAdd = 
-  () => dispatch => setTimeout(() => {
+export const asyncAdd = () => dispatch => setTimeout(() => {
     dispatch(add())
   }, 2000)
 
-export const asyncList = 
-  (studentId) => async dispatch => {
+export const asyncList = (studentId) => 
+  async dispatch => {
     const result = await get({
       uri: 'course-arrange',
       data: {
