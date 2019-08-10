@@ -44,7 +44,6 @@ export const request = ({
     })
   })
 
-
 export const get = (config) => 
   request({ ...config, method: 'GET' })
 
