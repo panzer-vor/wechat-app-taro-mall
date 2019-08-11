@@ -12,7 +12,9 @@ const config = {
   alias: {
     'actions': path.resolve(__dirname, '..', 'src/store/actions'),
     'config': path.resolve(__dirname, '..', 'src/config'),
-    'utils': path.resolve(__dirname, '..', 'src/utils')
+    'utils': path.resolve(__dirname, '..', 'src/utils'),
+    'assets': path.resolve(__dirname, '..', 'src/assets'),
+    'components': path.resolve(__dirname, '..', 'src/components'),
   },
   sourceRoot: 'src',
   outputRoot: 'dist',

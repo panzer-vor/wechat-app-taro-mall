@@ -4,7 +4,9 @@
     "paths": {
       "actions/*": ["./src/store/actions/*"],
       "utils/*": ["./src/util/*"],
-      "config/*": ["./src/config/*"]
+      "config/*": ["./src/config/*"],
+      "assets/*": ["./src/assets/*"],
+      "components/*": ["./src/components/*"]
     }
   }
 }
