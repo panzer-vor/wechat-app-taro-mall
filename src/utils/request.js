@@ -9,8 +9,12 @@ const ContentType = {
   'formData': 'multipart/form-data',
 }
 
+<<<<<<< HEAD
 export const request = (method = 'GET') => 
 ({
+=======
+export const request = ({
+>>>>>>> ae52550b83ee769e463da0ca99c8eb748cc27053
   uri,
   data,
   contentType = 'json',
