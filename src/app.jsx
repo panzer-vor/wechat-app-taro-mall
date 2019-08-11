@@ -1,8 +1,8 @@
 import '@tarojs/async-await'
 import Taro, { Component } from '@tarojs/taro'
 import { Provider } from '@tarojs/redux'
-import Index from './pages/index'
 
+import Index from './pages/index'
 import configStore from './store'
 
 import './app.scss'
@@ -23,12 +23,29 @@ class App extends Component {
       'pages/customer/index',
       'pages/address/index',
       'pages/userCenter/index',
+      'pages/coupons/index',
     ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
+    },
+    tabBar: {
+      color: '##666666',
+      selectedColor: '#FE5957',
+      backgroundColor: '#ffffff',
+      list: [{
+        pagePath: 'pages/index/index',
+        text: '首页',
+        iconPath: './assets/homeIcon.png',
+        selectedIconPath: './assets/homeSelectIcon.png'
+      },{
+        pagePath: 'pages/index/index',
+        text: '个人中心',
+        iconPath: './assets/personalIcon.png',
+        selectedIconPath: './assets/personalSelectIcon.png'
+      }]
     },
     permission: {
       'scope.userLocation': {

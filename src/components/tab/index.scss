@@ -1,0 +1,22 @@
+.tab--wrapper {
+  width: 100%;
+  height: 80px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+  color: #333;
+  font-size:26px;
+  font-weight:500;
+  line-height: 75px;
+
+  .item {
+    width: 100px;
+    height: 100%;
+    text-align: center;
+  }
+
+  .active {
+    color: #FE5957;
+    border-bottom: 1px solid #FE5957;
+  }
+}
