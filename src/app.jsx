@@ -22,8 +22,12 @@ class App extends Component {
       'pages/list/index',
       'pages/customer/index',
       'pages/address/index',
+<<<<<<< HEAD
       'pages/userCenter/index',
       'pages/coupons/index',
+=======
+      'pages/search/index'
+>>>>>>> 80361faccd43b5a175be34f880514bdaaa4f3d27
     ],
     window: {
       backgroundTextStyle: 'light',
