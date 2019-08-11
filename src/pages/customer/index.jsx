@@ -1,21 +1,28 @@
 import Taro from '@tarojs/taro'
-import { View, Image } from '@tarojs/components'
+import { View, Image, Text } from '@tarojs/components'
 import bg from 'assets/customer-bg.png'
 import head from 'assets/customer-head.png'
+import wave from 'assets/customer-wave.png'
+import code from 'assets/customer-code.png'
 import './index.scss'
 
 function Customer () {
-
-
   return (
     <View className='index'>
       <View 
         className='customer--wrapper'
         style={{
-          background: `url(${bg})`
+          backgroundImage: `url(${bg})`
         }}
       >
         <Image className='customer--head' src={head} />
+        <View className='customer--title'>
+          <Image className='customer--wave' src={wave} />
+          <Text>在线客服</Text>
+        </View>
+        <Text className='customer--more'>邀请更多好友前来加入</Text>
+        <Image className='customer--code' src={code} />
+        <Text className='customer--last'>欢迎咨询选购</Text>
       </View>
     </View>
   )

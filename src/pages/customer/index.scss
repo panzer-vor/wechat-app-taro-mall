@@ -1,8 +1,14 @@
+.index {
+  display: flex;
+}
+
 .customer--wrapper {
-  margin: 160px 30px auto 30px;
-  background-size: contain;
+  margin: 160px auto;
+  background-size: cover;
   position: relative;
-  
+  width: 720px;
+  display: flex;
+  flex-direction: column;
 }
 
 .customer--head {
@@ -15,3 +21,45 @@
   right: 0;
   margin: auto;
 }
+
+.customer--wave {
+  height: 27px;
+  top: 0;
+  left: 0;
+  width: 100%;;
+  position: absolute;
+  margin: auto;
+  bottom: 0;
+}
+
+.customer--title {
+  margin: 133px 94px 0;
+  position: relative;
+  text-align: center;
+  font-size:36px;
+  font-weight:bold;
+  color:rgba(255,65,65,1);
+}
+
+.customer--more {
+  margin-top: 129px;
+  text-align: center;
+  font-size:28px;
+  font-weight:bold;
+  color:rgba(25,25,25,1);
+}
+
+.customer--code {
+  width: 238px;
+  height: 238px;
+  margin: 176px auto 0;
+}
+
+.customer--last {
+  margin: 57px auto;
+  font-size:28px;
+  font-weight:500;
+  color:#333333;
+  line-height:24px;
+}
+
