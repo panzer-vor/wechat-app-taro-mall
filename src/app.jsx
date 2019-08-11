@@ -30,6 +30,22 @@ class App extends Component {
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
     },
+    tabBar: {
+      color: '##666666',
+      selectedColor: '#FE5957',
+      backgroundColor: '#ffffff',
+      list: [{
+        pagePath: 'pages/index/index',
+        text: '首页',
+        iconPath: './assets/homeIcon.png',
+        selectedIconPath: './assets/homeSelectIcon.png'
+      },{
+        pagePath: 'pages/index/index',
+        text: '个人中心',
+        iconPath: './assets/personalIcon.png',
+        selectedIconPath: './assets/personalSelectIcon.png'
+      }]
+    },
     permission: {
       'scope.userLocation': {
         desc: '你的位置信息将用于在地图中定位'

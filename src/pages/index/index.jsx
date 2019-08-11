@@ -1,40 +1,69 @@
-import Taro from '@tarojs/taro'
-import { View, Button, Text } from '@tarojs/components'
-import { useSelector, useDispatch } from '@tarojs/redux'
-
-import { add, minus, asyncAdd, asyncList } from 'actions/counter'
-
+import Taro, { useState } from '@tarojs/taro'
+import { View } from '@tarojs/components'
+import Banner from 'components/banner/index'
+import location from 'assets/locationIcon.png'
 import './index.scss'
 
 function Index () {
 
-  const dispatch = useDispatch()
+  const [ tabsList ] = useState([{
+    id: 0,
+    value: '14寸'
+  },{
+    id: 1,
+    value: '15寸'
+  },{
+    id: 2,
+    value: '16寸'
+  },{
+    id: 3,
+    value: '17寸'
+  },{
+    id: 4,
+    value: '18寸'
+  },{
+    id: 5,
+    value: '19寸'
+  },{
+    id: 6,
+    value: '20寸'
+  },{
+    id: 7,
+    value: '21寸及以上'
+  }])
 
-  const counter = useSelector(state => state.counter)
+  const [ current, setCurrent ] = useState(0)
 
-  const Add = () => dispatch(add())
-
-  const Dec = () => dispatch(minus())
-
-  const AsyncAdd = () => dispatch(asyncAdd())
-
-  const AsyncList = () => dispatch(asyncList(45))
+  const homeTabsList = tabsList.map((item, index) => {
+    return(
+      <View 
+        className={current === item.id ? 'homeTabsListActive' : 'homeTabsList'}
+        key={item.id}
+        onClick={() => setCurrent(index)}
+      >
+        {item.value}
+      </View>
+    )
+  })
 
   return (
-    <View className='index'>
-      <Button className='add_btn' onClick={Add}>+</Button>
-      <Button className='dec_btn' onClick={Dec}>-</Button>
-      <Button className='dec_btn' onClick={AsyncAdd}>async</Button>
-      <Button className='dec_btn' onClick={AsyncList}>asyncList</Button>
-      <View><Text>{counter.num}</Text></View>
-      <View><Text>{JSON.stringify(counter.list)}</Text></View>
-      <View onClick={() => Taro.navigateTo({url: '/pages/list/index?id=1'})}><Text>Hello, World</Text></View>
+    <View>
+      <Banner />
+      <View className='location'>
+        <View className='locationIcon'>
+          <image src={location} />
+        </View>
+        <View>福建省厦门市湖里区</View>
+      </View>
+      <View className='homeTabs'>
+        {homeTabsList}
+      </View>
     </View>
   )
 }
 
 Index.config = {
-  navigationBarTitleText: '首页'
+  navigationBarTitleText: '福漳通轮胎商场'
 }
 
 export default Index

@@ -1,7 +1,13 @@
-$mainDefaultColor: #1F1F1F; // 主体背景色
-
-body {
+page {
   background-color: #F4F5F9;
+  color: #333333;
+  font-family: 'PingFang-SC-Medium';
+}
+
+image {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 %absCenterFlex {
