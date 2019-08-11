@@ -19,6 +19,8 @@ class App extends Component {
 
   config = {
     pages: [
+      'pages/customer/index',
+      'pages/address/index',
       'pages/index/index',
       'pages/list/index',
     ],
@@ -27,6 +29,11 @@ class App extends Component {
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
+    },
+    permission: {
+      'scope.userLocation': {
+        desc: '你的位置信息将用于在地图中定位'
+      }
     }
   }
 

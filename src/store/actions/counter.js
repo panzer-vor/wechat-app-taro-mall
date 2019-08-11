@@ -1,4 +1,5 @@
-import { get } from 'utils/request'
+import { map } from 'rxjs/operators'
+import { obsGet } from 'utils/obs_request'
 import {
   ADD,
   MINUS,
@@ -19,15 +20,18 @@ export const asyncAdd = () => dispatch => setTimeout(() => {
   }, 2000)
 
 export const asyncList = (studentId) => 
-  async dispatch => {
-    const result = await get({
+  dispatch => {
+    obsGet({
       uri: 'course-arrange',
       data: {
         studentId
       }
-    })
-    dispatch({
-      type: ASYNC_LIST,
-      payload: result.data
-    })
+    }).pipe(
+      map(v => v)
+    ).subscribe(v =>
+      dispatch({
+        type: ASYNC_LIST,
+        payload: v
+      })
+    )
   }

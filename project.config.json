@@ -2,7 +2,7 @@
 	"miniprogramRoot": "dist/",
 	"projectname": "PPP",
 	"description": "",
-	"appid": "touristappid",
+	"appid": "wxef099d3f8410e884",
 	"setting": {
 		"urlCheck": false,
 		"es6": false,
@@ -12,5 +12,7 @@
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {}
 }
