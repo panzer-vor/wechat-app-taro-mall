@@ -6,7 +6,6 @@ import Index from './pages/index'
 import configStore from './store'
 
 import './app.scss'
-
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
 // if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
@@ -23,6 +22,7 @@ class App extends Component {
       'pages/list/index',
       'pages/customer/index',
       'pages/address/index',
+      'pages/userCenter/index',
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -34,7 +34,7 @@ class App extends Component {
       'scope.userLocation': {
         desc: '你的位置信息将用于在地图中定位'
       }
-    }
+    },
   }
 
   componentDidMount () {}
