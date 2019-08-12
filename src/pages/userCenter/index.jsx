@@ -1,6 +1,5 @@
 import Taro from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
-import userHead from 'assets/user-head.png'
 import testUser from 'assets/test-head.png'
 import pay from 'assets/user-pay.png'
 import install from 'assets/user-install.png'
@@ -10,6 +9,7 @@ import join from 'assets/join.png'
 import phone from 'assets/phone.png'
 import customer from 'assets/customer.png'
 import ticket from 'assets/ticket.png'
+import userHead from './bg'
 import './index.scss'
 
 function UserCenter () {

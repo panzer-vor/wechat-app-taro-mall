@@ -1,0 +1,56 @@
+@import '../../app.scss';
+
+.content {
+  display: flex;
+
+  .image {
+    width: 216px;
+    height: 216px;
+  }
+
+  .info {
+    margin-left: 31px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size:26px;
+    flex: 1;
+
+    .title {
+      font-weight:bold;
+      color:rgba(51,51,51,1);
+    }
+
+    .cates {
+      font-weight:500;
+      color:rgba(153,153,153,1);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+      View {
+        min-width: 180px;
+        width: 180px;
+        height: 48px;
+        margin-bottom: 10px;
+        line-height: 48px;
+        text-align: center;
+        background:rgba(249,249,249,1);
+        border-radius:6px;
+        @include lastChildNoMargin(right);
+      }
+    }
+
+    .pay {
+      color: #333;
+      font-weight:500;
+      display: flex;
+      justify-content: space-between;
+      
+      .money {
+        font-size:32px;
+        color:rgba(255,65,65,1);
+      }
+    }
+  }
+}
