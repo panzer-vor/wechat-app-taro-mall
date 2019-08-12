@@ -1,9 +1,9 @@
 import Taro from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
-import bg from 'assets/customer-bg.png'
 import head from 'assets/customer-head.png'
 import wave from 'assets/customer-wave.png'
 import code from 'assets/customer-code.png'
+import bg from './bg'
 import './index.scss'
 
 function Customer () {

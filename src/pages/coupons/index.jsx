@@ -1,12 +1,11 @@
 import Taro from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import Tab from 'components/tab/index'
-import d from 'assets/coupons-d.png'
-import o from 'assets/coupons-o.png'
-import s from 'assets/coupons-s.png'
 import none from 'assets/coupons-none.png'
+import c from 'assets/coupons-c.png'
 import { switchCurrent } from 'actions/coupons'
 import { useDispatch, useSelector } from '@tarojs/redux'
+import { d, o, s} from './bg'
 import './index.scss'
 
 const tabList = [{ title: '我的券' }, { title: '到期' }]
@@ -24,7 +23,7 @@ function Coupons () {
     <View className='index'>
       <Tab tabList={tabList} current={coupons.current} tabClick={tabClick} />
       {
-        true ? 
+        false ? 
           <View className='couponse__none'>
             <Image src={none} />
             <Text>您还没有优惠券</Text>
@@ -50,7 +49,9 @@ function Coupons () {
               </View>
               <View className='bottom'>
                 <Text className='date'>有效日期：2018-07-07</Text>
-                <Text className='use'>立即使用</Text>
+                {
+                  true ? <Image src={c} /> : <Text className='use'>立即使用</Text>
+                }
               </View>
             </View>
             <View 

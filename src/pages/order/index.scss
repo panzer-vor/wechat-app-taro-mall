@@ -7,6 +7,7 @@
     background:rgba(255,255,255,1);
     border-radius:14px;
     padding: 29px 31px 30px;
+    margin-bottom: 30px;
 
     .head {
       display: flex;
@@ -26,54 +27,99 @@
 
     .body {
       margin-top: 40px;
-
+      
       .content {
-        display: flex;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 32px;
+      }
 
-        Image {
-          width: 216px;
-          height: 216px;
+      .foot {
+        display: flex;
+        justify-content: flex-end;
+        padding: 30px 0;
+        position: relative;
+
+        .total {
+          color: #FF4141;
+          font-size:28px;
+          font-weight:500;
+          display: flex;
+
+          .count {
+            color: #333;
+            margin-right: 18px;
+          }
         }
 
-        .info {
-          margin-left: 31px;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          font-size:26px;
-
-          .title {
-            font-weight:bold;
-            color:rgba(51,51,51,1);
-          }
-
-          .cates {
-            font-weight:500;
-            color:rgba(153,153,153,1);
-
-            View {
-              min-width: 180px;
-              height: 48px;
-              line-height: 48px;
-              text-align: center;
-              margin-right: 21px;
-              @include lastChildNoMargin(right);
-            }
-          }
-
-          .pay {
-            color: #333;
-            font-weight:500;
-            display: flex;
-            justify-content: space-between;
-            
-            .money {
-              font-size:32px;
-              color:rgba(255,65,65,1);
-            }
-          }
+        .underline {
+          position: absolute;
+          bottom: 0;
+          left: -31px;
+          height: 1px;
+          width: calc(100% + 62px);
+          background-color: #eee;
         }
       }
     }
+
+    .operator {
+      margin-top: 30px;
+      display: flex;
+      justify-content: flex-end;
+      font-size: 26px;
+
+      .btn {
+        margin-right: 30px;
+        width:140px;
+        height:50px;
+        background-color:rgba(254,70,70,1);
+        border-radius:25px;
+        text-align: center;
+        line-height: 50px;
+        color: #fff;
+        border-style: solid;
+        border-width: 2px;
+        border-color: rgba(254,70,70,1);
+        @include lastChildNoMargin(right);
+      }
+
+      .cancel {
+        background-color: #fff;
+        color: #FE4646;
+      }
+    }
+  }
+}
+
+
+.order__none {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  Image {
+    width: 360px;
+    height: 238px;
+    margin-top: 245px;
+  }
+
+  Text {
+    font-size:26px;
+    font-weight:500;
+    color:rgba(51,51,51,1);
+    margin-top: 110px;
+  }
+
+  View {
+    margin-top: 59px;
+    line-height: 58px;
+    text-align: center;
+    font-size:28px;
+    font-weight:500;
+    color:rgba(255,255,255,1);
+    width:179px;
+    height:60px;
+    background:rgba(254,70,70,1);
+    border-radius:30px;
   }
 }

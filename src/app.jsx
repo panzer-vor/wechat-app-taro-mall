@@ -26,6 +26,7 @@ class App extends Component {
       'pages/coupons/index',
       'pages/search/index',
       'pages/order/index',
+      'pages/join/index',
     ],
     window: {
       backgroundTextStyle: 'light',
