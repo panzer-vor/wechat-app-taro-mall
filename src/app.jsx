@@ -22,12 +22,9 @@ class App extends Component {
       'pages/list/index',
       'pages/customer/index',
       'pages/address/index',
-<<<<<<< HEAD
       'pages/userCenter/index',
       'pages/coupons/index',
-=======
       'pages/search/index'
->>>>>>> 80361faccd43b5a175be34f880514bdaaa4f3d27
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -45,7 +42,7 @@ class App extends Component {
         iconPath: './assets/homeIcon.png',
         selectedIconPath: './assets/homeSelectIcon.png'
       },{
-        pagePath: 'pages/index/index',
+        pagePath: 'pages/userCenter/index',
         text: '个人中心',
         iconPath: './assets/personalIcon.png',
         selectedIconPath: './assets/personalSelectIcon.png'

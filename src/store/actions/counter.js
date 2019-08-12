@@ -18,21 +18,6 @@ export const asyncAdd = () => dispatch => setTimeout(() => {
     dispatch(add())
   }, 2000)
 
-// export const asyncList = (studentId) => dispatch => 
-//   obsGet({
-//     uri: 'course-arrange',
-//     data: {
-//       studentId
-//     }
-//   }).pipe(
-//     map(v => v)
-//   ).subscribe(v =>
-//     dispatch({
-//       type: ASYNC_LIST,
-//       payload: v
-//     })
-//   )
-
 export const asyncList = (studentId) => dispatch => 
   get({
     uri: 'course-arrange',
@@ -44,5 +29,3 @@ export const asyncList = (studentId) => dispatch =>
     type: ASYNC_LIST,
     payload: res
   }))
-    
-  

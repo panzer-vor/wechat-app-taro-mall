@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from '@tarojs/redux'
 import { add, minus, asyncAdd } from 'actions/counter'
 
 function List () {
-
+  
   const dispatch = useDispatch()
 
   const counter = useSelector(state => state.counter)

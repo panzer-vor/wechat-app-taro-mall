@@ -1,0 +1,116 @@
+{
+	// Place your PPP workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	"Init Taro Pages": {
+		"scope": "javascriptreact",
+		"prefix": "TPageInit",
+		"body": [
+			"import Taro from '@tarojs/taro'",
+			"import { View } from '@tarojs/components'",
+			"import './index.scss'",
+			"",
+			"function $1 () {",
+			"",
+			"  return (",
+			"    <View>Hello World</View>",
+			"  )",
+			"}",
+			"",
+			"$1.config = {",
+			"  navigationBarTitleText: '$2'",
+			"}",
+			"",
+			"export default $1",
+		],
+		"description": "Taro Page Init"
+	},
+	"Init Taro Components": {
+		"scope": "javascriptreact",
+		"prefix": "TComponentInit",
+		"body": [
+			"import Taro from '@tarojs/taro'",
+			"import { View } from '@tarojs/components'",
+			"import './index.scss'",
+			"",
+			"function $1 () {",
+			"",
+			"  return (",
+			"    <View>Hello World</View>",
+			"  )",
+			"}",
+			"",
+			"export default $1",
+		],
+		"description": "Taro Component Init"
+	},
+	"Taro Image": {
+		"scope": "javascriptreact",
+		"prefix": "TImage",
+		"body": [
+			"<Image src={$1} />"
+		],
+		"description": "Taro Image"
+	},
+	"redux hooks": {
+		"scope": "javascriptreact",
+		"prefix": "TUseRedux",
+		"body": [
+			"const $1 = useSelector(state => state.$1)",
+			"",
+			"const dispatch = useDispatch()"
+		],
+		"description": "redux hooks(useSelector, useDispatch)"
+	},
+	"init Reducer": {
+		"scope": "javascript",
+		"prefix": "TReducerInit",
+		"body": [
+			"import { \n  $1\n } from '../constants/$2'",
+			"",
+			"const INITIAL_STATE = {",
+			"  $3",
+			"}",
+			"",
+			"export default (state = INITIAL_STATE, {type, payload}) => {",
+			"  switch (type) {",
+			"    case $1:",
+			"      return {",
+			"        ...state,",
+			"        $3: payload,",
+			"      }",
+			"    default:",
+			"      return state",
+			"  }",
+			"}"
+		]
+	},
+	"init action async": {
+		"scope": "javascript",
+		"prefix": "TActionAsync",
+		"body": [
+			"export const $1 = ($2) => ({",
+			"  type: $3",
+			"  payload: $2",
+			"})"
+		]
+	},
+	"init action sync": {
+		"scope": "javascript",
+		"prefix": "TActionSync",
+		"body": [
+			"export const $1 = ($2) => async dispatch => {",
+			"  const response = await $3",
+			"",
+			"  return dispatch({",
+			"    type: ,",
+			"    payload: ,",
+			"  })",
+			"}"
+		]
+	}
+}

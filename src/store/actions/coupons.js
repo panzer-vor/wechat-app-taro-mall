@@ -7,5 +7,3 @@ export const switchCurrent = (index) => ({
   payload: index,
 })
 
-    
-  
