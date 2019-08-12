@@ -1,30 +1,30 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add taro-ui/dist/style/tabs.scss --silent --no-progress
+  C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\yarn\bin\yarn.js add @components/tab/index --silent --no-progress
 
 PATH: 
-  C:\Program Files\nodejs\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin;D:\workspace\PPP\node_modules\.bin;C:\Users\Administrator\AppData\Local\Temp\yarn--1565517074754-0.8808157979471465;D:\workspace\PPP\node_modules\.bin;C:\Users\Administrator\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Program Files\libexec\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Users\Administrator\AppData\Local\Temp\yarn--1565517074405-0.6232021456483767;D:\workspace\PPP\node_modules\.bin;C:\Users\Administrator\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Users\Administrator\AppData\Local\Yarn\bin;C:\Program Files\libexec\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Program Files\Haskell\bin;C:\Program Files\Haskell Platform\8.6.5\lib\extralibs\bin;C:\Program Files\Haskell Platform\8.6.5\bin;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\nodejs\;C:\tool\Git\cmd;C:\Program Files\Haskell Platform\8.6.5\mingw\bin;C:\Users\Administrator\AppData\Roaming\cabal\bin;C:\Users\Administrator\AppData\Roaming\local\bin;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;C:\Users\Administrator\AppData\Roaming\npm;C:\tool\Microsoft VS Code\bin
+  C:\tools\nvm\v9.11.2\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin;C:\Work\PPP\node_modules\.bin;C:\Users\xyk\AppData\Local\Temp\yarn--1565586910239-0.50704847982961;C:\Work\PPP\node_modules\.bin;C:\Users\xyk\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Work\PPP\node_modules\.bin;C:\Users\xyk\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Program Files\libexec\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Users\xyk\AppData\Local\Temp\yarn--1565586909814-0.34913210757874946;C:\Work\PPP\node_modules\.bin;C:\Users\xyk\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Work\PPP\node_modules\.bin;C:\Users\xyk\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Users\xyk\AppData\Local\Yarn\bin;C:\Program Files\libexec\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\tools\XShell\;C:\Program Files\Haskell\bin;C:\Program Files\Haskell Platform\8.6.5\lib\extralibs\bin;C:\Program Files\Haskell Platform\8.6.5\bin;C:\Python27\;C:\Python27\Scripts;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_161\bin;C:\Users\xyk\AppData\Local\Android\Sdk\tools;C:\Users\xyk\AppData\Local\Android\Sdk\platform-tools;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\MySQL\MySQL Server 5.5\bin;C:\工具\Microsoft VS Code\bin;C:\tools\mysql\bin;C:\tools\Tesseract-OCR;C:\Users\xyk\AppData\Roaming\nvm;C:\Program Files\Dart\dart-sdk\bin;C:\ProgramData\chocolatey\bin;C:\tools\nvm;C:\Program Files\nodejs;C:\tools\bin;C:\Users\xyk\AppData\Local\Android\Sdk\platform-tools;C:\Program Files\Haskell Platform\8.6.5\mingw\bin;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\xyk\AppData\Roaming\cabal\bin;C:\Users\xyk\AppData\Roaming\local\bin;C:\Users\xyk\.windows-build-tools\python27\;C:\Users\xyk\AppData\Roaming\nvm\v9.11.0\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin;C:\Program Files\nodejs\node_modules\windows-build-tools\node_modules\.bin;C:\Program Files\nodejs\node_modules\.bin;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_161\bin;C:\Users\xyk\AppData\Local\Android\Sdk\tools;C:\Users\xyk\AppData\Local\Android\Sdk\platform-tools;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\MySQL\MySQL Server 5.5\bin;C:\工具\Microsoft VS Code\bin;C:\tools\mysql\bin;C:\tools\Tesseract-OCR;C:\Users\xyk\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\xyk\AppData\Roaming\nvm;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\xyk\.windows-build-tools\python27\;C:\Users\xyk\AppData\Roaming\nvm\v10.13.0\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin;C:\Program Files\nodejs\node_modules\windows-build-tools\node_modules\.bin;C:\Program Files\nodejs\node_modules\.bin;C:\tools\Ruby25-x64\bin;C:\Users\xyk\AppData\Local\Microsoft\WindowsApps;C:\工具\bandizip\;C:\tools\dart-sdk\bin;C:\Users\xyk\AppData\Roaming\Pub\Cache\bin;C:\tools\nvm;C:\Program Files\nodejs;C:\tools\bin
 
 Yarn version: 
-  1.16.0
+  1.13.0
 
 Node version: 
-  10.16.0
+  9.11.2
 
 Platform: 
   win32 x64
 
 Trace: 
-  Error: https://registry.npm.taobao.org/taro-ui%2fdist/style/tabs.scss: [not_found] document not found
-      at Request.params.callback [as _callback] (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66091:18)
-      at Request.self.callback (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:129590:22)
-      at Request.emit (events.js:198:13)
-      at Request.<anonymous> (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:130562:10)
-      at Request.emit (events.js:198:13)
-      at Gunzip.<anonymous> (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:130484:12)
-      at Object.onceWrapper (events.js:286:20)
-      at Gunzip.emit (events.js:203:15)
-      at endReadableNT (_stream_readable.js:1129:12)
-      at process._tickCallback (internal/process/next_tick.js:63:19)
+  Error: https://registry.npm.taobao.org/@components%2ftab/index: Request "https://registry.npm.taobao.org/@components%2ftab/index" returned a 405
+      at Request.params.callback [as _callback] (C:\tools\nvm\v9.11.2\node_modules\yarn\lib\cli.js:66264:18)
+      at Request.self.callback (C:\tools\nvm\v9.11.2\node_modules\yarn\lib\cli.js:129397:22)
+      at Request.emit (events.js:180:13)
+      at Request.<anonymous> (C:\tools\nvm\v9.11.2\node_modules\yarn\lib\cli.js:130369:10)
+      at Request.emit (events.js:180:13)
+      at IncomingMessage.<anonymous> (C:\tools\nvm\v9.11.2\node_modules\yarn\lib\cli.js:130291:12)
+      at Object.onceWrapper (events.js:272:13)
+      at IncomingMessage.emit (events.js:185:15)
+      at endReadableNT (_stream_readable.js:1106:12)
+      at process._tickCallback (internal/process/next_tick.js:178:19)
 
 npm manifest: 
   {
@@ -72,7 +72,6 @@ npm manifest:
       "redux": "^4.0.0",
       "redux-logger": "^3.0.6",
       "redux-thunk": "^2.3.0",
-      "rxjs": "^6.5.2",
       "taro-ui": "^2.2.1"
     },
     "devDependencies": {

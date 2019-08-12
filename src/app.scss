@@ -34,16 +34,3 @@ image {
     }
   }
 }
-
-@mixin aInitial($defaultColor, $activeColor) {
-  color: $defaultColor;
-  &.visited {
-    color: $defaultColor;
-  }
-  &:hover {
-    color: $activeColor;
-  }
-  &:active {
-    color: $activeColor;
-  }
-}

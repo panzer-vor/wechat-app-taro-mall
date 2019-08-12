@@ -24,7 +24,8 @@ class App extends Component {
       'pages/address/index',
       'pages/userCenter/index',
       'pages/coupons/index',
-      'pages/search/index'
+      'pages/search/index',
+      'pages/order/index',
     ],
     window: {
       backgroundTextStyle: 'light',

@@ -1,3 +1,5 @@
+@import '../../app.scss';
+
 .index {
   display: flex;
 }
@@ -14,12 +16,9 @@
 .customer--head {
   width: 146px;
   height: 142px;
-  position: absolute;
+  @extend %absCenterPos;
   border-radius: 50%;
   top: -71px;
-  left: 0;
-  right: 0;
-  margin: auto;
 }
 
 .customer--wave {
