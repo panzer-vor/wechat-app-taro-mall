@@ -1,0 +1,65 @@
+.customizedBanner {
+  width: 100%;
+  height: 300px;
+}
+
+.customizedCard {
+  width: calc(100% - 40px);
+  margin: 0 auto;
+  margin-top: 18px;
+}
+
+.customizedSwiper {
+  width: 100%;
+  height: 456px;
+  background: #ffffff;
+  box-shadow:4px 6px 15px 1px rgba(4,0,0,0.06);
+  border-radius:14px;
+}
+
+.customizedTitle {
+  width: 100%;
+  height: 70px;
+  line-height: 70px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.seat {
+  width: 100%;
+  height: 118px;
+}
+
+.customizeBottom {
+  width: calc(100% - 60px);
+  height: 100px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  background: #ffffff;
+  position: fixed;
+  bottom: 0;
+}
+
+.customizePrice {
+  font-size: 30px;
+  font-weight: 500;
+  color: #666666;
+}
+
+.customizePrice Text{
+  color: #FF4141;
+}
+
+.customizeButton {
+  width: 180px;
+  height: 60px;
+  line-height: 60px;
+  background: #FF4646;
+  text-align: center;
+  border-radius:30px;
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 500;
+}

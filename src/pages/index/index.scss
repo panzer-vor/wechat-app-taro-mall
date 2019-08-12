@@ -138,3 +138,23 @@
   font-weight: bold;
   text-align: center;
 }
+
+.shopCar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow:0px 7px 15px 1px rgba(4,0,0,0.14);
+  position: fixed;
+  bottom: 89px;
+  right: 33px;
+  z-index: 999;
+}
+
+.shopCar image {
+  width: 51px;
+  height: 35px;
+}

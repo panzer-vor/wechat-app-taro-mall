@@ -4,6 +4,7 @@ import Banner from 'components/banner/index'
 import location from 'assets/locationIcon.png'
 import goodsImage from 'assets/goodsImage.png'
 import searchRed from 'assets/search-red.png'
+import shopCar from 'assets/shopCar.png'
 import './index.scss'
 
 function Index () {
@@ -116,6 +117,9 @@ function Index () {
   return (
     <View>
       <Banner />
+      <View className='shopCar'>
+        <Image src={shopCar} />
+      </View>
       <View className='location'>
         <View className='locationIcon'>
           <Image src={location} />
