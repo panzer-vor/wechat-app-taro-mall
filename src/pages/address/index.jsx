@@ -1,6 +1,8 @@
 import Taro, { useEffect, useReducer } from '@tarojs/taro'
-import { Map, View } from '@tarojs/components'
+import { Map, View, Image, Text } from '@tarojs/components'
 import Search from 'components/search/index'
+import icon from 'assets/locationIcon.png'
+import './index.scss'
 
 const mapData = {
   markers: [{
@@ -38,34 +40,49 @@ function Address () {
   const [state, dispatch] = useReducer(reducer, mapData)
 
   useEffect(() => {
-    Taro.getLocation()
+
+    Taro.getLocation({
+      type: 'wgs84'
+    })
       .then((res) => dispatch({
         type: 'setLocation',
         payload: res
       }))
+    
   }, [])
 
   return (
     <View className='index'>
-      <Search 
-        styles={{
-          marginTop: '15px',
-          marginBottom: '15px',
-        }}
-        placeholder='搜索地址'
-      />
-      <Map 
-        id='map' 
-        longitude={state.longitude} 
-        latitude={state.latitude} 
-        scale='14' 
-        bindcontroltap={controlTap} 
-        markers={mapData.markers}
-        bindmarkertap={makerTap} 
-        bindregionchange={regionchange}
-        show-location
-        style='width: 100%; height: 300px;' 
-      />
+      <View className='search--wrapper'>
+        <Search 
+          placeholder='搜索地址'
+        />
+      </View>
+      <View className='map--wrapper'>
+        <View className='address'>
+          <Image src={icon} />
+          <Text>福建省厦门市湖里区</Text>
+        </View>
+        <Map 
+          id='map' 
+          longitude={state.longitude} 
+          latitude={state.latitude} 
+          scale='14' 
+          bindcontroltap={controlTap} 
+          markers={mapData.markers}
+          bindmarkertap={makerTap} 
+          bindregionchange={regionchange}
+          show-location
+          style='width: 100%; height: 300px;' 
+        />
+      </View>
+      <View className='address--list'>
+        <Text className='sub'>附近安装点</Text>
+        <View className='item'>
+          <Text>福建省厦门市湖里区蔡塘学校46号</Text>
+          <Text className='master'>半身瓜（先生） 15822064578</Text>
+        </View>
+      </View>
     </View>
   )
 }
