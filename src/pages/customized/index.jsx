@@ -20,9 +20,15 @@ function Customized() {
     </SwiperItem>
   </Swiper>
 
+  const toBrandDetails = () => {
+    Taro.navigateTo({
+      url: '/pages/brandDetails/index'
+    })
+  }
+
   return(
     <View>
-      <View className='customizedBanner'>
+      <View className='customizedBanner' onClick={toBrandDetails}>
         <Image src={customizedBanner} />
       </View>
       <View className='customizedCard'>

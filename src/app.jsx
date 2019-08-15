@@ -28,6 +28,9 @@ class App extends Component {
       'pages/order/index',
       'pages/customized/index',
       'pages/join/index',
+      'pages/confirmOrder/index',
+      'pages/waitInstall/index',
+      'pages/brandDetails/index'
     ],
     window: {
       backgroundTextStyle: 'light',

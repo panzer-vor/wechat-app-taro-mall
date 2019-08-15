@@ -32,11 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-<<<<<<< HEAD
-			"current": 3,
-=======
 			"current": 4,
->>>>>>> d06104d0f23e1a6f86f6a521a69f4c2bfeefe963
 			"list": [
 				{
 					"id": 0,
@@ -60,23 +56,17 @@
 					"scene": null
 				},
 				{
-<<<<<<< HEAD
 					"id": 3,
-					"name": "customized",
-					"pathName": "pages/customized/index",
-					"query": "",
-=======
-					"id": -1,
-					"name": "join",
-					"pathName": "pages/join/index",
+					"name": "confirmOrder",
+					"pathName": "pages/confirmOrder/index",
 					"query": "",
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "customer",
-					"pathName": "pages/customer/index",
->>>>>>> d06104d0f23e1a6f86f6a521a69f4c2bfeefe963
+					"id": 4,
+					"name": "BrandDetails",
+					"pathName": "pages/brandDetails/index",
+					"query": "",
 					"scene": null
 				}
 			]
