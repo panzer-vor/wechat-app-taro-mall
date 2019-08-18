@@ -27,7 +27,14 @@ export const request = (method = 'GET') =>
         'content-type': ContentType[contentType]
       },
       success(res) {
-        resolve(res)
+        if (res.statusCode !== 200) {
+          Taro.showModal({
+            content: res.data.msg,
+            showCancel: false
+          })
+          return
+        }
+        resolve(res.data)
       },
       fail(error) {
         Taro.showToast({

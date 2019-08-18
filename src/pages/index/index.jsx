@@ -1,4 +1,4 @@
-import Taro, { useState } from '@tarojs/taro'
+import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, Image, ScrollView, Text } from '@tarojs/components'
 import { AtFloatLayout, AtInputNumber } from "taro-ui"
 import Banner from 'components/banner/index'
@@ -6,9 +6,19 @@ import location from 'assets/locationIcon.png'
 import goodsImage from 'assets/goodsImage.png'
 import searchRed from 'assets/search-red.png'
 import shopCar from 'assets/shopCar.png'
+import {get} from 'utils/request'
 import './index.scss'
 
 function Index () {
+
+  useEffect(()=>{
+    get({
+      uri:'banner/list'
+    })
+    .then(res => {
+      console.log(res)
+    })
+  })
 
   const [ current, setCurrent ] = useState(0)
 
