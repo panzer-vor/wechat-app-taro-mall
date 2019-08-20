@@ -11,96 +11,56 @@ import './index.scss'
 
 function Index () {
 
-  useEffect(()=>{
+  const [current, setCurrent] = useState(0)
+  const [tabsList, setTabsList] = useState([])
+  const [cardList, setCardList] = useState([])
+
+  useEffect(() => {
+    // 获取tabs
     get({
-      uri:'banner/list'
+      uri:'shop/goods/category/all'
     })
     .then(res => {
-      console.log(res)
+      setTabsList(res.data)
+      // 获取默认tab下的的商品
+      getGoodsData(res.data[0].id)
     })
-  })
-
-  const [ current, setCurrent ] = useState(0)
-
-  const [ tabsList ] = useState([{
-    id: 0,
-    value: '14寸'
-  },{
-    id: 1,
-    value: '15寸'
-  },{
-    id: 2,
-    value: '16寸'
-  },{
-    id: 3,
-    value: '17寸'
-  },{
-    id: 4,
-    value: '18寸'
-  },{
-    id: 5,
-    value: '19寸'
-  },{
-    id: 6,
-    value: '20寸'
-  },{
-    id: 7,
-    value: '21寸及以上'
-  }])
+  },[])
 
   const homeTabsList = tabsList.map((item, index) => {
     return(
       <View 
-        className={current === item.id ? 'homeTabsListActive' : 'homeTabsList'}
-        key={item.id}
-        onClick={() => setCurrent(index)}
+        className={current === item.paixu ? 'homeTabsListActive' : 'homeTabsList'}
+        key={item.paixu}
+        onClick={() => {
+          setCurrent(index)
+          getGoodsData(item.id)
+        }}
       >
-        {item.value}
+        {item.name}
       </View>
     )
   })
 
-  const cardList = [{
-    id: 0,
-    url: {goodsImage},
-    title: '宝骏560原配】全新德国马牌轮胎',
-    price: '800'
-  },{
-    id: 1,
-    url: {goodsImage},
-    title: '宝骏560原配】全新德国马牌轮胎',
-    price: '689'
-  },{
-    id: 2,
-    url: {goodsImage},
-    title: '宝骏560原配】全新德国马牌轮胎',
-    price: '810'
-  },{
-    id: 3,
-    url: {goodsImage},
-    title: '宝骏560原配】全新德国马牌轮胎',
-    price: '180'
-  },{
-    id: 4,
-    url: {goodsImage},
-    title: '宝骏560原配】全新德国马牌轮胎',
-    price: '600'
-  },{
-    id: 5,
-    url: {goodsImage},
-    title: '宝骏560原配】全新德国马牌轮胎',
-    price: '788'
-  },{
-    id: 6,
-    url: {goodsImage},
-    title: '宝骏560原配】全新德国马牌轮胎',
-    price: '899'
-  },{
-    id: 7,
-    url: {goodsImage},
-    title: '宝骏560原配】全新德国马牌轮胎',
-    price: '388'
-  }]
+  const getGoodsData = (tabsId) => {
+    get({
+      uri: 'shop/goods/list',
+      data: {
+        categoryId: tabsId
+      }
+    })
+    .then(res => {
+      if (res.code !== 0){
+        Taro.showModal({
+          content: res.msg,
+          showCancel: false
+        })
+        setCardList([])
+        return
+      }
+      setCardList(res.data)
+    })
+  }
 
   const toCustomized  = (id) => {
     Taro.navigateTo({
@@ -110,24 +70,24 @@ function Index () {
 
   const tabsContentCardList = cardList.map((item) => {
     return(
-      <View className='tabsContentCard' key={item.id}>
-        <View className='cardImage'> 
-          <Image src={goodsImage} />
+      <View className='tabsContentCard' key={item.paixu}>
+      <View className='cardImage'> 
+        <Image src={item.pic} />
+      </View>
+      <View className='cardContent'>
+        <View className='cardTitle'>
+          {item.name}
         </View>
-        <View className='cardContent'>
-          <View className='cardTitle'>
-            {item.title}
+        <View className='cardBottom'>
+          <View className='cardPrice'>
+            ¥ {item.originalPrice}
           </View>
-          <View className='cardBottom'>
-            <View className='cardPrice'>
-              ¥ {item.price}
-            </View>
-            <View className='cardButton' onClick={() => toCustomized(item.id)}>
-              去定制
-            </View>
+          <View className='cardButton' onClick={() => toCustomized(item.id)}>
+            去定制
           </View>
         </View>
       </View>
+    </View>
     )
   })
 
@@ -183,9 +143,12 @@ function Index () {
         </View>
         <ScrollView className='tabsContent' scrollY style={{height:'567px'}}>
           <View className='tabsContentTitle'>
-            · {tabsList[current].value} ·
+            · {tabsList[current].name} ·
           </View>
-          {tabsContentCardList}
+          <View>
+            {tabsContentCardList}
+          </View>
+          
         </ScrollView>
       </View>
       <AtFloatLayout scrollY isOpened={carShow} onClose={hideShopCar}>
@@ -224,7 +187,7 @@ function Index () {
         <View style={{width:'100%',height:'51px'}}></View>
         <View className='orderBottom'>
           <View className='orderPrice'>
-            合计: <Text>¥800</Text>
+            合计: <Text>¥ 800</Text>
           </View>
           <View className='orderBottomButton' onClick={toConfirmOrder}>
             去支付

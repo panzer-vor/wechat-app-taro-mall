@@ -1,7 +1,28 @@
-import Taro from '@tarojs/taro'
-import { Swiper, SwiperItem } from '@tarojs/components'
+import Taro, {useState, useEffect} from '@tarojs/taro'
+import { Swiper, SwiperItem, Image } from '@tarojs/components'
+import {get} from 'utils/request'
 
 function Banner() {
+
+  const [bannerUrl, setBannerUrl] = useState([])
+
+  useEffect(()=>{
+    get({
+      uri:'banner/list'
+    })
+    .then(res => {
+      setBannerUrl(res.data)
+    })
+  },[])
+
+  const temp = bannerUrl.map(item => {
+    return (
+      <SwiperItem key={item.paixu}>
+        <Image src={item.picUrl} />
+      </SwiperItem>
+    )
+  })
+
   return (
     <Swiper
       indicatorColor='#999'
@@ -11,12 +32,7 @@ function Banner() {
       autoplay='true'
       style={{height:'180px'}}
     >
-      <SwiperItem style={{background:'red'}}>
-        1
-      </SwiperItem>
-      <SwiperItem style={{background:'blue'}}>
-        2
-      </SwiperItem>
+      {temp}
     </Swiper>
   )
 }
