@@ -4,9 +4,10 @@ import customizedBanner from 'assets/customizedBanner.png'
 import {get} from 'utils/request'
 import './index.scss'
 
+
+
 function Customized() {
-  
-  const [goodsId, setGoodsId] = useState(0)
+  let goodsId = 0  
   const [tyreList, setTyreList] = useState([])
   const [patternList, setPatternList] = useState([])
   const [tyreId, setTyreId] = useState(0)
@@ -16,11 +17,11 @@ function Customized() {
   const [price, setPrice] = useState(0)
 
   useEffect(()=>{
-    setGoodsId(Number(this.$router.params.id))
+    goodsId = this.$router.params.id
     get({
       uri: 'shop/goods/detail',
       data: {
-        id: Number(this.$router.params.id)
+        id: goodsId
       }
     })
     .then(res => {
@@ -75,7 +76,7 @@ function Customized() {
     get({
       uri: 'shop/goods/price',
       data: {
-        goodsId: goodsId,
+        goodsId,
         propertyChildIds: tyrePropertyId + ':' + tyreId + ',' + patternPropertyId+ ':' + patternId
       }
     })
@@ -89,7 +90,7 @@ function Customized() {
   }
 
   return(
-    <View>
+    <View onClick={toGoodsCar}>
       <View className='customizedBanner' onClick={toBrandDetails}>
         <Image src={customizedBanner} />
       </View>
