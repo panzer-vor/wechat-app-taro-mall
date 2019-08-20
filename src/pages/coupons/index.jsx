@@ -1,9 +1,9 @@
-import Taro from '@tarojs/taro'
+import Taro, { useEffect } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import Tab from 'components/tab/index'
 import none from 'assets/coupons-none.png'
 import c from 'assets/coupons-c.png'
-import { switchCurrent } from 'actions/coupons'
+import { switchCurrent, getAllCoupons } from 'actions/coupons'
 import { useDispatch, useSelector } from '@tarojs/redux'
 import { d, o, s} from './bg'
 import './index.scss'
@@ -18,6 +18,10 @@ function Coupons () {
   const tabClick = (i) => {
     dispatch(switchCurrent(i))
   } 
+
+  useEffect(() => {
+    dispatch(getAllCoupons())
+  }, [dispatch])
 
   return (
     <View className='index'>
