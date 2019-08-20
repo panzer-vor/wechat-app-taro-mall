@@ -5,16 +5,18 @@ import {get} from 'utils/request'
 import './index.scss'
 
 
+let goodsId = 0
+let tyrePropertyId = 0
+let patternId = 0
+let patternPropertyId = 0
+let tyreId = 0
 
 function Customized() {
-  let goodsId = 0  
+
   const [tyreList, setTyreList] = useState([])
   const [patternList, setPatternList] = useState([])
-  const [tyreId, setTyreId] = useState(0)
-  const [tyrePropertyId, setTyrePropertyId] = useState(0)
-  const [patternId, setPatternId] = useState(0)
-  const [patternPropertyId, setPatternPropertyId] = useState(0)
   const [price, setPrice] = useState(0)
+  const [key, setKey] = useState(false)
 
   useEffect(()=>{
     goodsId = this.$router.params.id
@@ -25,17 +27,16 @@ function Customized() {
       }
     })
     .then(res => {
-      setTyreList(res.data.properties[0].childsCurGoods)
-      setTyreId(res.data.properties[0].childsCurGoods[0].id)
-      setTyrePropertyId(res.data.properties[0].childsCurGoods[0].propertyId)
-      setPatternList(res.data.properties[1].childsCurGoods)
-      setPatternId(res.data.properties[1].childsCurGoods[0].id)
-      setPatternPropertyId(res.data.properties[1].childsCurGoods[0].propertyId)
+      const { properties } = res.data
+      setTyreList(properties[0].childsCurGoods)
+      setPatternList(properties[1].childsCurGoods)
+      tyreId = properties[0].childsCurGoods[0].id
+      tyrePropertyId = properties[0].childsCurGoods[0].propertyId
+      patternId = properties[1].childsCurGoods[0].id
+      patternPropertyId = properties[1].childsCurGoods[0].propertyId
       getGoodsPrice()
     })
   },[])
-
-
 
   const tyreSwiper = tyreList.map(item => {
     return (
@@ -61,15 +62,17 @@ function Customized() {
 
   const tyreChange = (e) => {
     const current = e.detail.current
-    setTyreId(tyreList[current].id)
-    setTyrePropertyId(tyreList[current].propertyId)
+    tyreId = tyreList[current].id
+    tyrePropertyId = tyreList[current].propertyId
+    
     getGoodsPrice()
   }
 
   const patternChange = (e) => {
     const current = e.detail.current
-    setPatternId(patternList[current].id)
-    setPatternPropertyId(patternList[current].propertyId)
+    patternId = patternList[current].id
+    patternPropertyId = patternList[current].propertyId
+    setKey(!key)
     getGoodsPrice()
   }
 
@@ -82,7 +85,8 @@ function Customized() {
       }
     })
     .then(res => {
-      setPrice(res.data.originalPrice)
+      const { originalPrice } = res.data || {}
+      setPrice(originalPrice || 0)
     })
   }
 
@@ -91,7 +95,7 @@ function Customized() {
   }
 
   return(
-    <View onClick={toGoodsCar}>
+    <View>
       <View className='customizedBanner' onClick={toBrandDetails}>
         <Image src={customizedBanner} />
       </View>
