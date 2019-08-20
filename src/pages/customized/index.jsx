@@ -16,7 +16,6 @@ function Customized() {
   const [tyreList, setTyreList] = useState([])
   const [patternList, setPatternList] = useState([])
   const [price, setPrice] = useState(0)
-  const [key, setKey] = useState(false)
 
   useEffect(()=>{
     goodsId = this.$router.params.id
@@ -72,7 +71,6 @@ function Customized() {
     const current = e.detail.current
     patternId = patternList[current].id
     patternPropertyId = patternList[current].propertyId
-    setKey(!key)
     getGoodsPrice()
   }
 
