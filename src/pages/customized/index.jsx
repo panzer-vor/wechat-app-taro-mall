@@ -30,7 +30,6 @@ function Customized() {
       setPatternList(res.data.properties[1].childsCurGoods)
       setPatternId(res.data.properties[1].childsCurGoods[0].id)
       setPatternPropertyId(res.data.properties[1].childsCurGoods[0].propertyId)
-      getGoodsPrice()
     })
   },[])
 
