@@ -15,6 +15,9 @@ function Index () {
   const [tabsList, setTabsList] = useState([])
   const [cardList, setCardList] = useState([])
 
+  const basicInfo = Taro.getStorageSync('basicInfo') || null
+  const chooseData = Taro.getStorageSync('chooseData') || null
+
   useEffect(() => {
     // 获取tabs
     get({
