@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect } from '@tarojs/taro'
+import Taro, { useState, useEffect, useDidShow } from '@tarojs/taro'
 import { View, Image, ScrollView, Text } from '@tarojs/components'
 import { AtFloatLayout, AtInputNumber } from "taro-ui"
 import Banner from 'components/banner/index'
@@ -18,6 +18,10 @@ function Index () {
   const basicInfo = Taro.getStorageSync('basicInfo') || null
   const chooseData = Taro.getStorageSync('chooseData') || null
 
+  useDidShow(() => {
+    console.log('componentDidShow')
+  })
+  
   useEffect(() => {
     // 获取tabs
     get({

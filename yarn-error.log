@@ -1,30 +1,20 @@
 Arguments: 
-  /Users/kaximoduo/.nvm/versions/node/v11.14.0/bin/node /usr/local/Cellar/yarn/1.15.2/libexec/bin/yarn.js add ~taro-ui/dist/style/components/float-layout.scss --silent --no-progress
+  C:\Program Files\nodejs\node.exe C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @tarojs/async-await -S
 
 PATH: 
-  /Users/kaximoduo/.nvm/versions/node/v11.14.0/lib/node_modules/npm/node_modules/npm-lifecycle/node-gyp-bin:/Users/kaximoduo/Desktop/code/taro/PPP/node_modules/.bin:/var/folders/tg/swnkmjns5jz089h4nycqsl2r0000gn/T/yarn--1565623470983-0.8648583497528883:/Users/kaximoduo/Desktop/code/taro/PPP/node_modules/.bin:/Users/kaximoduo/.config/yarn/link/node_modules/.bin:/Users/kaximoduo/.nvm/versions/node/v11.14.0/libexec/lib/node_modules/npm/bin/node-gyp-bin:/Users/kaximoduo/.nvm/versions/node/v11.14.0/lib/node_modules/npm/bin/node-gyp-bin:/Users/kaximoduo/.nvm/versions/node/v11.14.0/bin/node_modules/npm/bin/node-gyp-bin:/var/folders/tg/swnkmjns5jz089h4nycqsl2r0000gn/T/yarn--1565623470640-0.9172527407902826:/Users/kaximoduo/Desktop/code/taro/PPP/node_modules/.bin:/Users/kaximoduo/.config/yarn/link/node_modules/.bin:/Users/kaximoduo/.nvm/versions/node/v11.14.0/libexec/lib/node_modules/npm/bin/node-gyp-bin:/Users/kaximoduo/.nvm/versions/node/v11.14.0/lib/node_modules/npm/bin/node-gyp-bin:/Users/kaximoduo/.nvm/versions/node/v11.14.0/bin/node_modules/npm/bin/node-gyp-bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/kaximoduo/.nvm/versions/node/v11.14.0/bin
+  C:\Program Files\Haskell\bin;C:\Program Files\Haskell Platform\8.6.5\lib\extralibs\bin;C:\Program Files\Haskell Platform\8.6.5\bin;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\nodejs\;C:\tool\Git\cmd;C:\Program Files\Haskell Platform\8.6.5\mingw\bin;C:\Users\Administrator\AppData\Roaming\cabal\bin;C:\Users\Administrator\AppData\Roaming\local\bin;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;C:\Users\Administrator\AppData\Roaming\npm;C:\tool\Microsoft VS Code\bin
 
 Yarn version: 
-  1.15.2
+  1.16.0
 
 Node version: 
-  11.14.0
+  10.16.0
 
 Platform: 
-  darwin x64
+  win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/~taro-ui%2fdist/style/components/float-layout.scss: Request "https://registry.yarnpkg.com/~taro-ui%2fdist/style/components/float-layout.scss" returned a 405
-      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:66067:18)
-      at Request.self.callback (/usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:129541:22)
-      at Request.emit (events.js:193:13)
-      at Request.<anonymous> (/usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:130513:10)
-      at Request.emit (events.js:193:13)
-      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:130435:12)
-      at Object.onceWrapper (events.js:281:20)
-      at IncomingMessage.emit (events.js:198:15)
-      at endReadableNT (_stream_readable.js:1139:12)
-      at processTicksAndRejections (internal/process/task_queues.js:81:17)
+  Error: EPERM: operation not permitted, unlink 'D:\workspace\PPP\node_modules\eslint-config-taro\node_modules\.bin'
 
 npm manifest: 
   {
@@ -66,6 +56,7 @@ npm manifest:
       "@tarojs/taro-swan": "1.3.12",
       "@tarojs/taro-tt": "1.3.12",
       "@tarojs/taro-weapp": "1.3.12",
+      "dayjs": "^1.8.15",
       "nerv-devtools": "^1.4.0",
       "nervjs": "^1.4.0",
       "ramda": "^0.26.1",
@@ -2626,6 +2617,11 @@ Lockfile:
   dayjs@^1.7.7:
     version "1.8.15"
     resolved "https://registry.npm.taobao.org/dayjs/download/dayjs-1.8.15.tgz?cache=0&sync_timestamp=1562597134097&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fdayjs%2Fdownload%2Fdayjs-1.8.15.tgz#7121bc04e6a7f2621ed6db566be4a8aaf8c3913e"
+    integrity sha1-cSG8BOan8mIe1ttWa+SoqvjDkT4=
+  
+  dayjs@^1.8.15:
+    version "1.8.15"
+    resolved "https://registry.npm.taobao.org/dayjs/download/dayjs-1.8.15.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fdayjs%2Fdownload%2Fdayjs-1.8.15.tgz#7121bc04e6a7f2621ed6db566be4a8aaf8c3913e"
     integrity sha1-cSG8BOan8mIe1ttWa+SoqvjDkT4=
   
   debug@*, debug@^4.0.1, debug@^4.1.0:
