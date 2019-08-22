@@ -1,5 +1,6 @@
 import Taro from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
+import { linkTo } from 'utils/tools'
 import testUser from 'assets/test-head.png'
 import pay from 'assets/user-pay.png'
 import install from 'assets/user-install.png'
@@ -27,14 +28,14 @@ function UserCenter () {
           <Text>半身瓜</Text>
         </View>
         <View className='user--status'>
-          <View className='item'>
+          <View className='item' onClick={linkTo('order?status=1')}>
             <Image src={pay} className='icon' />
             <Text className='status'>待付款</Text>
             <Text className='number'>0</Text>
             <Image className='arrow' src={arrow} />
           </View>
           <View className='line' />
-          <View className='item'>
+          <View className='item'  onClick={linkTo('order?status=2')}>
             <Image src={install} className='icon' />
             <Text className='status'>待安装</Text>
             <Text className='number'>0</Text>
@@ -43,14 +44,14 @@ function UserCenter () {
         </View>
       </View>
       <View className='user--operator'>
-        <View className='item'>
+        <View className='item' onClick={linkTo('order')}>
           <View className='left'>
             <Image src={order} />
             <Text>我的订单</Text>
           </View>
           <Image className='arrow' src={arrow} />
         </View>
-        <View className='item'>
+        <View className='item' onClick={linkTo('coupons')}>
           <View className='left'>
             <Image src={ticket} />
             <Text>我的优惠券</Text>
@@ -60,14 +61,14 @@ function UserCenter () {
             <Image className='arrow' src={arrow} />
           </View>
         </View>
-        <View className='item'>
+        <View className='item' onClick={linkTo('join')}>
           <View className='left'>
             <Image src={join} />
             <Text>加入我们</Text>
           </View>
           <Image className='arrow' src={arrow} />
         </View>
-        <View className='item'>
+        <View className='item' onClick={linkTo('customer')}>
           <View className='left'>
             <Image src={customer} />
             <Text>在线客服</Text>
@@ -81,7 +82,6 @@ function UserCenter () {
           </View>
           <View className='right'>
             <Text>400-125-5842</Text>
-            <Image className='arrow' src={arrow} />
           </View>
         </View>
       </View>
