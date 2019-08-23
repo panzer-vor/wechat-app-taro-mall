@@ -1,2 +1,4 @@
 export const SWITCH_CURRENT = 'SWITCH_CURRENT'
 
+export const GET_ALL_COUPONS = 'GET_ALL_COUPONS'
+

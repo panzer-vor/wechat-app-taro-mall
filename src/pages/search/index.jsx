@@ -1,68 +1,47 @@
-import Taro from '@tarojs/taro'
-import Search from 'components/search';
-import { View, Image } from '@tarojs/components';
-import goodsImage from 'assets/goodsImage.png'
+import Taro, {useState} from '@tarojs/taro'
+import Search from 'components/search'
+import { View, Image } from '@tarojs/components'
+import {get} from 'utils/request'
 import './index.scss'
 
 export default function SearchPage() {
 
-  const temp = [{
-      id: 0,
-      url: {goodsImage},
-      title: '宝骏560原配】全新德国马牌轮胎',
-      price: '800'
-    },{
-      id: 1,
-      url: {goodsImage},
-      title: '宝骏560原配】全新德国马牌轮胎',
-      price: '689'
-    },{
-      id: 2,
-      url: {goodsImage},
-      title: '宝骏560原配】全新德国马牌轮胎',
-      price: '810'
-    },{
-      id: 3,
-      url: {goodsImage},
-      title: '宝骏560原配】全新德国马牌轮胎',
-      price: '180'
-    },{
-      id: 4,
-      url: {goodsImage},
-      title: '宝骏560原配】全新德国马牌轮胎',
-      price: '600'
-    },{
-      id: 5,
-      url: {goodsImage},
-      title: '宝骏560原配】全新德国马牌轮胎',
-      price: '788'
-    },{
-      id: 6,
-      url: {goodsImage},
-      title: '宝骏560原配】全新德国马牌轮胎',
-      price: '899'
-    },{
-      id: 7,
-      url: {goodsImage},
-      title: '宝骏560原配】全新德国马牌轮胎',
-      price: '388'
-    }]
+  const [searchData, setSearchData] = useState([])
 
-  const searchCard = temp.map((item) => {
+  const goodsSearch = (event) => {
+    const value = event.detail.value
+    get({
+      uri: 'shop/goods/list',
+      data: {
+        nameLike: value
+      }
+    })
+    .then(res => {
+      setSearchData(res.data)
+    })
+  }
+
+  const toCustomized = (id) => {
+    Taro.navigateTo({
+      url: '/pages/customized/index?id=' + id
+    })
+  }
+
+  const searchCard = searchData.map((item) => {
     return(
-      <View className='searchCard' key={item.id}>
+      <View className='searchCard' key={item.paixu}>
         <View className='cardImage'>
-          <Image src={goodsImage} />
+          <Image src={item.pic} />
         </View>
         <View className='cardContent'>
           <View className='cardTitle'>
-            {item.title}
+            {item.name}
           </View>
           <View className='cardBottom'>
             <View className='cardPrice'>
-              ¥ {item.price}
+              ¥ {item.originalPrice}
             </View>
-            <View className='cardButton'>
+            <View className='cardButton' onClick={() => toCustomized(item.id)}>
               去定制
             </View>
           </View>
@@ -80,6 +59,7 @@ export default function SearchPage() {
           background: '#ffffff'
         }}
         placeholder='搜索商品'
+        onChange={goodsSearch}
       />
       {searchCard}
     </View>

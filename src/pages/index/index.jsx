@@ -1,123 +1,197 @@
-import Taro, { useState } from '@tarojs/taro'
-import { View, Image, ScrollView } from '@tarojs/components'
+import Taro, { useState, useEffect, useDidShow } from '@tarojs/taro'
+import { View, Image, ScrollView, Text } from '@tarojs/components'
+import { AtFloatLayout } from "taro-ui"
 import Banner from 'components/banner/index'
 import location from 'assets/locationIcon.png'
 import goodsImage from 'assets/goodsImage.png'
 import searchRed from 'assets/search-red.png'
 import shopCar from 'assets/shopCar.png'
+import {get} from 'utils/request'
 import './index.scss'
+
+let basicInfo = {}
+let price = 0
 
 function Index () {
 
-  const [ current, setCurrent ] = useState(0)
+  const [current, setCurrent] = useState(0)
+  const [tabsList, setTabsList] = useState([])
+  const [cardList, setCardList] = useState([])
+  const [basicInfoArray, setBasicInfoArray] = useState([])
 
-  const [ tabsList ] = useState([{
-    id: 0,
-    value: '14寸'
-  },{
-    id: 1,
-    value: '15寸'
-  },{
-    id: 2,
-    value: '16寸'
-  },{
-    id: 3,
-    value: '17寸'
-  },{
-    id: 4,
-    value: '18寸'
-  },{
-    id: 5,
-    value: '19寸'
-  },{
-    id: 6,
-    value: '20寸'
-  },{
-    id: 7,
-    value: '21寸及以上'
-  }])
+  useDidShow(() => {
+    basicInfo = Taro.getStorageSync('basicInfo') || null
+    if (basicInfo) {
+      basicInfo.tyreTag = basicInfo.propertyChildNames.slice(5, basicInfo.propertyChildNames.indexOf(','))
+      basicInfo.temp = basicInfo.propertyChildNames.slice(basicInfo.propertyChildNames.indexOf(','), -1) + ','
+      basicInfo.patternTag = basicInfo.temp.slice(6, -1)
+      basicInfo.count = 1
+      basicInfoArray.push(basicInfo)
+      price = price + basicInfoArray[basicInfoArray.length - 1].originalPrice
+      setBasicInfoArray(basicInfoArray)
+      Taro.removeStorageSync('basicInfo')
+    }
+  })
+  
+  useEffect(() => {
+    // 获取tabs
+    get({
+      uri:'shop/goods/category/all'
+    })
+    .then(res => {
+      setTabsList(res.data)
+      // 获取默认tab下的的商品
+      getGoodsData(res.data[0].id)
+    })
+  },[])
 
   const homeTabsList = tabsList.map((item, index) => {
     return(
       <View 
-        className={current === item.id ? 'homeTabsListActive' : 'homeTabsList'}
-        key={item.id}
-        onClick={() => setCurrent(index)}
+        className={current === item.paixu ? 'homeTabsListActive' : 'homeTabsList'}
+        key={item.paixu}
+        onClick={() => {
+          setCurrent(index)
+          getGoodsData(item.id)
+        }}
       >
-        {item.value}
+        {item.name}
       </View>
     )
   })
 
-  const cardList = [{
-    id: 0,
-    url: {goodsImage},
-    title: '宝骏560原配】全新德国马牌轮胎',
-    price: '800'
-  },{
-    id: 1,
-    url: {goodsImage},
-    title: '宝骏560原配】全新德国马牌轮胎',
-    price: '689'
-  },{
-    id: 2,
-    url: {goodsImage},
-    title: '宝骏560原配】全新德国马牌轮胎',
-    price: '810'
-  },{
-    id: 3,
-    url: {goodsImage},
-    title: '宝骏560原配】全新德国马牌轮胎',
-    price: '180'
-  },{
-    id: 4,
-    url: {goodsImage},
-    title: '宝骏560原配】全新德国马牌轮胎',
-    price: '600'
-  },{
-    id: 5,
-    url: {goodsImage},
-    title: '宝骏560原配】全新德国马牌轮胎',
-    price: '788'
-  },{
-    id: 6,
-    url: {goodsImage},
-    title: '宝骏560原配】全新德国马牌轮胎',
-    price: '899'
-  },{
-    id: 7,
-    url: {goodsImage},
-    title: '宝骏560原配】全新德国马牌轮胎',
-    price: '388'
-  }]
+  const getGoodsData = (tabsId) => {
+    get({
+      uri: 'shop/goods/list',
+      data: {
+        categoryId: tabsId
+      }
+    })
+    .then(res => {
+      if (res.code !== 0){
+        Taro.showModal({
+          content: res.msg,
+          showCancel: false
+        })
+        setCardList([])
+        return
+      }
+      setCardList(res.data)
+    })
+  }
+
+  const toCustomized  = (id) => {
+    Taro.navigateTo({
+      url: '/pages/customized/index?id=' + id
+    })
+  }
 
   const tabsContentCardList = cardList.map((item) => {
     return(
-      <View className='tabsContentCard' key={item.id}>
-        <View className='cardImage'> 
+      <View className='tabsContentCard' key={item.paixu}>
+      <View className='cardImage'> 
+        <Image src={item.pic} />
+      </View>
+      <View className='cardContent'>
+        <View className='cardTitle'>
+          {item.name}
+        </View>
+        <View className='cardBottom'>
+          <View className='cardPrice'>
+            ¥ {item.originalPrice}
+          </View>
+          <View className='cardButton' onClick={() => toCustomized(item.id)}>
+            去定制
+          </View>
+        </View>
+      </View>
+    </View>
+    )
+  })
+
+  const [carShow, setCarShow] = useState(false)
+
+  const showShopCar = () => {
+    if (basicInfoArray.length){
+      setCarShow(true)
+    }
+  }
+
+  const hideShopCar = () => {
+    setCarShow(false)
+  }
+
+  const countSub = (index) => {
+    if (basicInfoArray[index].count === 0) {
+      return
+    }
+    basicInfoArray[index].count = basicInfoArray[index].count - 1
+    price = price - basicInfoArray[index].originalPrice
+    setBasicInfoArray(basicInfoArray)
+  }
+
+  const countAdd = (index) => {
+    basicInfoArray[index].count = basicInfoArray[index].count + 1
+    price = price + basicInfoArray[index].originalPrice
+    setBasicInfoArray(basicInfoArray)
+  }
+
+  const goodsCarList = basicInfoArray.map((item,index) => {
+    return (
+      <View className='shopCarCard' key={item.paixu}>
+        <View className='shopCarCardIcon'>
           <Image src={goodsImage} />
         </View>
-        <View className='cardContent'>
-          <View className='cardTitle'>
-            {item.title}
+        <View className='shopCarCardContent'>
+          <View className='shopCarCardTitle'>
+            {item.name}
           </View>
-          <View className='cardBottom'>
-            <View className='cardPrice'>
-              ¥ {item.price}
+          <View className='shopCarCardBody'>
+            <View className='tireTag'>
+              {item.tyreTag}
             </View>
-            <View className='cardButton'>
-              去定制
+            <View className='tireTag'>
+              {item.patternTag}
+            </View>
+          </View>
+          <View className='shopCarCardBottom'>
+            <View className='shopCarCardPrice'>
+              ¥ {Number(item.originalPrice) * Number(item.count)}
+            </View>
+            <View className='shopCarCount'>
+              <View className='sub' onClick={() => countSub(index)}>-</View>
+              <View className='goodsCount'>{item.count}</View>
+              <View className='add' onClick={() => countAdd(index)}>+</View>
             </View>
           </View>
         </View>
       </View>
     )
   })
+
+  const toSearch = () => {
+    Taro.navigateTo({
+      url:'/pages/search/index'
+    })
+  }
+
+  const toConfirmOrder = () => {
+    Taro.setStorage({key: 'basicInfoArray', data: basicInfoArray})
+    .then(() => {
+      Taro.setStorageSync('price', price)
+    })
+    .then(() => {
+      Taro.navigateTo({
+        url: '/pages/confirmOrder/index'
+      })
+    })
+  }
 
   return (
     <View>
       <Banner />
-      <View className='shopCar'>
+      <View className='shopCarIcon' onClick={showShopCar}>
+        <View className='goodsLength'>{basicInfoArray.length ? basicInfoArray.length:null}</View>
         <Image src={shopCar} />
       </View>
       <View className='location'>
@@ -128,7 +202,7 @@ function Index () {
       </View>
       <View className='homeContent'>
         <View className='homeTabs'>
-          <View className='homeTabsList search'>
+          <View className='homeTabsList search' onClick={toSearch}>
             <View className='searchIcon'>
               <Image src={searchRed} />
             </View>
@@ -138,11 +212,26 @@ function Index () {
         </View>
         <ScrollView className='tabsContent' scrollY style={{height:'567px'}}>
           <View className='tabsContentTitle'>
-            · {tabsList[current].value} ·
+            · {tabsList[current].name} ·
           </View>
-          {tabsContentCardList}
+          <View>
+            {tabsContentCardList}
+          </View>
+          
         </ScrollView>
       </View>
+      <AtFloatLayout scrollY isOpened={carShow} onClose={hideShopCar}>
+        {goodsCarList}
+        <View style={{width:'100%',height:'51px'}}></View>
+        <View className='orderBottom'>
+          <View className='orderPrice'>
+            合计: <Text>¥ {price}</Text>
+          </View>
+          <View className='orderBottomButton' onClick={toConfirmOrder}>
+            去支付
+          </View>
+        </View>
+      </AtFloatLayout>
     </View>
   )
 }

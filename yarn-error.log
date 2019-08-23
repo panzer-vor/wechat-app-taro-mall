@@ -1,30 +1,20 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\yarn\bin\yarn.js add @components/tab/index --silent --no-progress
+  C:\Program Files\nodejs\node.exe C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @tarojs/async-await -S
 
 PATH: 
-  C:\tools\nvm\v9.11.2\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin;C:\Work\PPP\node_modules\.bin;C:\Users\xyk\AppData\Local\Temp\yarn--1565586910239-0.50704847982961;C:\Work\PPP\node_modules\.bin;C:\Users\xyk\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Work\PPP\node_modules\.bin;C:\Users\xyk\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Program Files\libexec\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Users\xyk\AppData\Local\Temp\yarn--1565586909814-0.34913210757874946;C:\Work\PPP\node_modules\.bin;C:\Users\xyk\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Work\PPP\node_modules\.bin;C:\Users\xyk\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Users\xyk\AppData\Local\Yarn\bin;C:\Program Files\libexec\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\tools\XShell\;C:\Program Files\Haskell\bin;C:\Program Files\Haskell Platform\8.6.5\lib\extralibs\bin;C:\Program Files\Haskell Platform\8.6.5\bin;C:\Python27\;C:\Python27\Scripts;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_161\bin;C:\Users\xyk\AppData\Local\Android\Sdk\tools;C:\Users\xyk\AppData\Local\Android\Sdk\platform-tools;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\MySQL\MySQL Server 5.5\bin;C:\工具\Microsoft VS Code\bin;C:\tools\mysql\bin;C:\tools\Tesseract-OCR;C:\Users\xyk\AppData\Roaming\nvm;C:\Program Files\Dart\dart-sdk\bin;C:\ProgramData\chocolatey\bin;C:\tools\nvm;C:\Program Files\nodejs;C:\tools\bin;C:\Users\xyk\AppData\Local\Android\Sdk\platform-tools;C:\Program Files\Haskell Platform\8.6.5\mingw\bin;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\xyk\AppData\Roaming\cabal\bin;C:\Users\xyk\AppData\Roaming\local\bin;C:\Users\xyk\.windows-build-tools\python27\;C:\Users\xyk\AppData\Roaming\nvm\v9.11.0\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin;C:\Program Files\nodejs\node_modules\windows-build-tools\node_modules\.bin;C:\Program Files\nodejs\node_modules\.bin;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_161\bin;C:\Users\xyk\AppData\Local\Android\Sdk\tools;C:\Users\xyk\AppData\Local\Android\Sdk\platform-tools;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\MySQL\MySQL Server 5.5\bin;C:\工具\Microsoft VS Code\bin;C:\tools\mysql\bin;C:\tools\Tesseract-OCR;C:\Users\xyk\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\xyk\AppData\Roaming\nvm;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\xyk\.windows-build-tools\python27\;C:\Users\xyk\AppData\Roaming\nvm\v10.13.0\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin;C:\Program Files\nodejs\node_modules\windows-build-tools\node_modules\.bin;C:\Program Files\nodejs\node_modules\.bin;C:\tools\Ruby25-x64\bin;C:\Users\xyk\AppData\Local\Microsoft\WindowsApps;C:\工具\bandizip\;C:\tools\dart-sdk\bin;C:\Users\xyk\AppData\Roaming\Pub\Cache\bin;C:\tools\nvm;C:\Program Files\nodejs;C:\tools\bin
+  C:\Program Files\Haskell\bin;C:\Program Files\Haskell Platform\8.6.5\lib\extralibs\bin;C:\Program Files\Haskell Platform\8.6.5\bin;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\nodejs\;C:\tool\Git\cmd;C:\Program Files\Haskell Platform\8.6.5\mingw\bin;C:\Users\Administrator\AppData\Roaming\cabal\bin;C:\Users\Administrator\AppData\Roaming\local\bin;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;C:\Users\Administrator\AppData\Roaming\npm;C:\tool\Microsoft VS Code\bin
 
 Yarn version: 
-  1.13.0
+  1.16.0
 
 Node version: 
-  9.11.2
+  10.16.0
 
 Platform: 
   win32 x64
 
 Trace: 
-  Error: https://registry.npm.taobao.org/@components%2ftab/index: Request "https://registry.npm.taobao.org/@components%2ftab/index" returned a 405
-      at Request.params.callback [as _callback] (C:\tools\nvm\v9.11.2\node_modules\yarn\lib\cli.js:66264:18)
-      at Request.self.callback (C:\tools\nvm\v9.11.2\node_modules\yarn\lib\cli.js:129397:22)
-      at Request.emit (events.js:180:13)
-      at Request.<anonymous> (C:\tools\nvm\v9.11.2\node_modules\yarn\lib\cli.js:130369:10)
-      at Request.emit (events.js:180:13)
-      at IncomingMessage.<anonymous> (C:\tools\nvm\v9.11.2\node_modules\yarn\lib\cli.js:130291:12)
-      at Object.onceWrapper (events.js:272:13)
-      at IncomingMessage.emit (events.js:185:15)
-      at endReadableNT (_stream_readable.js:1106:12)
-      at process._tickCallback (internal/process/next_tick.js:178:19)
+  Error: EPERM: operation not permitted, unlink 'D:\workspace\PPP\node_modules\eslint-config-taro\node_modules\.bin'
 
 npm manifest: 
   {
@@ -66,6 +56,7 @@ npm manifest:
       "@tarojs/taro-swan": "1.3.12",
       "@tarojs/taro-tt": "1.3.12",
       "@tarojs/taro-weapp": "1.3.12",
+      "dayjs": "^1.8.15",
       "nerv-devtools": "^1.4.0",
       "nervjs": "^1.4.0",
       "ramda": "^0.26.1",
@@ -2626,6 +2617,11 @@ Lockfile:
   dayjs@^1.7.7:
     version "1.8.15"
     resolved "https://registry.npm.taobao.org/dayjs/download/dayjs-1.8.15.tgz?cache=0&sync_timestamp=1562597134097&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fdayjs%2Fdownload%2Fdayjs-1.8.15.tgz#7121bc04e6a7f2621ed6db566be4a8aaf8c3913e"
+    integrity sha1-cSG8BOan8mIe1ttWa+SoqvjDkT4=
+  
+  dayjs@^1.8.15:
+    version "1.8.15"
+    resolved "https://registry.npm.taobao.org/dayjs/download/dayjs-1.8.15.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fdayjs%2Fdownload%2Fdayjs-1.8.15.tgz#7121bc04e6a7f2621ed6db566be4a8aaf8c3913e"
     integrity sha1-cSG8BOan8mIe1ttWa+SoqvjDkT4=
   
   debug@*, debug@^4.0.1, debug@^4.1.0:
@@ -7319,7 +7315,7 @@ Lockfile:
     dependencies:
       aproba "^1.1.1"
   
-  rxjs@^6.4.0, rxjs@^6.5.2:
+  rxjs@^6.4.0:
     version "6.5.2"
     resolved "https://registry.npm.taobao.org/rxjs/download/rxjs-6.5.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Frxjs%2Fdownload%2Frxjs-6.5.2.tgz#2e35ce815cd46d84d02a209fb4e5921e051dbec7"
     integrity sha1-LjXOgVzUbYTQKiCftOWSHgUdvsc=

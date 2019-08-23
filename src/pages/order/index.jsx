@@ -1,4 +1,4 @@
-import Taro from '@tarojs/taro'
+import Taro, { useRouter, useDidShow } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import Tab from 'components/tab/index'
 import Goods from 'components/goods/index'
@@ -6,11 +6,14 @@ import { switchCurrent } from 'actions/order'
 import { useDispatch, useSelector } from '@tarojs/redux'
 import l from 'assets/goodsImage.png'
 import none from 'assets/order-none.png'
+import { linkTo } from 'utils/tools'
 import './index.scss'
 
 const tabList = [{title: '全部'}, {title: '待付款'}, {title: '待安装'}]
 
 function Order () {
+  const router = useRouter()
+
   const order = useSelector(state => state.order)
   
   const dispatch = useDispatch()
@@ -19,6 +22,22 @@ function Order () {
     dispatch(switchCurrent(i))
   } 
   
+  const handleCancelOrder = (i) => {
+    Taro.showModal({
+      title: '警告',
+      content: '确定取消订单？（取消后删除该订单）',
+      success(res) {
+        if (res.confirm) {
+          console.log(111);
+        }
+      },
+    })
+  }
+
+  useDidShow(() => {
+    dispatch(switchCurrent(router.params.status))
+  })
+
   return (
     <View>
       <Tab tabList={tabList} tabClick={tabClick} current={order.current} />
@@ -27,7 +46,7 @@ function Order () {
           <View className='order__none'>
             <Image src={none} />
             <Text>您还没有订单，快去添加吧</Text>
-            <View>添加</View>
+            <View onClick={linkTo('index')}>添加</View>
           </View> :
           <View className='order--list'>
             <View className='item'>
@@ -53,7 +72,7 @@ function Order () {
                   </View>
                 </View>
                 <View className='operator'>
-                  <View className='btn cancel'>取消</View>
+                  <View className='btn cancel' onClick={handleCancelOrder}>取消</View>
                   <View className='btn'>去支付</View>
                 </View>
               </View>
