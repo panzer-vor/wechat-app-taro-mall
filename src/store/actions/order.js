@@ -4,6 +4,6 @@ import {
 
 export const switchCurrent = (index) => ({
   type: SWITCH_CURRENT,
-  payload: index,
+  payload: ~~index,
 })
 
