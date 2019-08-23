@@ -1,7 +1,7 @@
 import '@tarojs/async-await'
 import Taro, { Component } from '@tarojs/taro'
 import { Provider } from '@tarojs/redux'
-
+import {post} from 'utils/request'
 import Index from './pages/index'
 import configStore from './store'
 
@@ -61,7 +61,29 @@ class App extends Component {
     },
   }
 
-  componentDidMount () {}
+  componentDidMount () {
+    Taro.login({
+      success: function(res) {
+        Taro.getUserInfo({
+          success: function(resolve) {
+            Taro.setStorageSync('userInfo', resolve.userInfo)
+            post({
+              uri: 'user/wxapp/register/complex',
+              data: {
+                code: res.code,
+                encryptedData: resolve.encryptedData,
+                iv: resolve.iv
+              },
+              contentType: 'form'
+            })
+            .then(event => {
+              console.log(event.msg)
+            })
+          }
+        })
+      }
+    })
+  }
 
   componentDidShow () {}
 

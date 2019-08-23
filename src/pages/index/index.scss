@@ -1,5 +1,4 @@
 @import "~taro-ui/dist/style/components/float-layout.scss";
-@import "~taro-ui/dist/style/components/input-number.scss";
 @import "~taro-ui/dist/style/components/icon.scss";
 .location {
   width: calc(100% - 60px);
@@ -162,6 +161,15 @@
   height: 35px;
 }
 
+.goodsLength {
+  width: 10px;
+  text-align: center;
+  color: #FF4141;
+  position: absolute;
+  left: 70px;
+  top: -10px;
+}
+
 .at-float-layout__container {
   border-radius:16px 16px 0px 0px;
   border-top: 2px solid #E2E2E2;
@@ -212,6 +220,33 @@
   text-align: center;
 }
 
+.shopCarCount {
+  width: 150px;
+  height: 44px;
+  border: 2px solid #E2E2E2;
+  display: flex;
+}
+
+.shopCarCount view{
+  width: 50px;
+  height: 44px;
+  text-align: center;
+  line-height: 44px;
+}
+
+.sub {
+  border-right: 2px solid #E2E2E2;
+}
+
+.goodsCount {
+  border-right: 2px solid #E2E2E2;
+  font-size: 24px;
+}
+
+.sub,.add {
+  font-weight: bolder;
+}
+
 .shopCarCardBottom {
   display: flex;
   justify-content: space-between;
@@ -221,15 +256,6 @@
   color: #FF4141;
   font-weight: 500;
   font-size: 32px;
-}
-
-.shopCarCount .at-input-number__btn  {
-  width: 50px;
-  padding: 12px 0;
-}
-
-.shopCarCount .at-input-number__input {
-  width: 50px;
 }
 
 .orderBottom {

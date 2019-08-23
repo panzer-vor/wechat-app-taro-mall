@@ -1,6 +1,6 @@
 import Taro, { useState, useEffect, useDidShow } from '@tarojs/taro'
 import { View, Image, ScrollView, Text } from '@tarojs/components'
-import { AtFloatLayout, AtInputNumber } from "taro-ui"
+import { AtFloatLayout } from "taro-ui"
 import Banner from 'components/banner/index'
 import location from 'assets/locationIcon.png'
 import goodsImage from 'assets/goodsImage.png'
@@ -9,17 +9,28 @@ import shopCar from 'assets/shopCar.png'
 import {get} from 'utils/request'
 import './index.scss'
 
+let basicInfo = {}
+let price = 0
+
 function Index () {
 
   const [current, setCurrent] = useState(0)
   const [tabsList, setTabsList] = useState([])
   const [cardList, setCardList] = useState([])
-
-  const basicInfo = Taro.getStorageSync('basicInfo') || null
-  const chooseData = Taro.getStorageSync('chooseData') || null
+  const [basicInfoArray, setBasicInfoArray] = useState([])
 
   useDidShow(() => {
-    console.log('componentDidShow')
+    basicInfo = Taro.getStorageSync('basicInfo') || null
+    if (basicInfo) {
+      basicInfo.tyreTag = basicInfo.propertyChildNames.slice(5, basicInfo.propertyChildNames.indexOf(','))
+      basicInfo.temp = basicInfo.propertyChildNames.slice(basicInfo.propertyChildNames.indexOf(','), -1) + ','
+      basicInfo.patternTag = basicInfo.temp.slice(6, -1)
+      basicInfo.count = 1
+      basicInfoArray.push(basicInfo)
+      price = price + basicInfoArray[basicInfoArray.length - 1].originalPrice
+      setBasicInfoArray(basicInfoArray)
+      Taro.removeStorageSync('basicInfo')
+    }
   })
   
   useEffect(() => {
@@ -101,18 +112,62 @@ function Index () {
   const [carShow, setCarShow] = useState(false)
 
   const showShopCar = () => {
-    setCarShow(true)
+    if (basicInfoArray.length){
+      setCarShow(true)
+    }
   }
 
   const hideShopCar = () => {
     setCarShow(false)
   }
 
-  const [goodsCount, setGoodsCountChange] = useState(1)
-
-  const goodsCountChange = (value) => {
-    setGoodsCountChange(value)
+  const countSub = (index) => {
+    if (basicInfoArray[index].count === 0) {
+      return
+    }
+    basicInfoArray[index].count = basicInfoArray[index].count - 1
+    price = price - basicInfoArray[index].originalPrice
+    setBasicInfoArray(basicInfoArray)
   }
+
+  const countAdd = (index) => {
+    basicInfoArray[index].count = basicInfoArray[index].count + 1
+    price = price + basicInfoArray[index].originalPrice
+    setBasicInfoArray(basicInfoArray)
+  }
+
+  const goodsCarList = basicInfoArray.map((item,index) => {
+    return (
+      <View className='shopCarCard' key={item.paixu}>
+        <View className='shopCarCardIcon'>
+          <Image src={goodsImage} />
+        </View>
+        <View className='shopCarCardContent'>
+          <View className='shopCarCardTitle'>
+            {item.name}
+          </View>
+          <View className='shopCarCardBody'>
+            <View className='tireTag'>
+              {item.tyreTag}
+            </View>
+            <View className='tireTag'>
+              {item.patternTag}
+            </View>
+          </View>
+          <View className='shopCarCardBottom'>
+            <View className='shopCarCardPrice'>
+              ¥ {Number(item.originalPrice) * Number(item.count)}
+            </View>
+            <View className='shopCarCount'>
+              <View className='sub' onClick={() => countSub(index)}>-</View>
+              <View className='goodsCount'>{item.count}</View>
+              <View className='add' onClick={() => countAdd(index)}>+</View>
+            </View>
+          </View>
+        </View>
+      </View>
+    )
+  })
 
   const toSearch = () => {
     Taro.navigateTo({
@@ -121,8 +176,14 @@ function Index () {
   }
 
   const toConfirmOrder = () => {
-    Taro.navigateTo({
-      url: '/pages/confirmOrder/index'
+    Taro.setStorage({key: 'basicInfoArray', data: basicInfoArray})
+    .then(() => {
+      Taro.setStorageSync('price', price)
+    })
+    .then(() => {
+      Taro.navigateTo({
+        url: '/pages/confirmOrder/index'
+      })
     })
   }
 
@@ -130,6 +191,7 @@ function Index () {
     <View>
       <Banner />
       <View className='shopCarIcon' onClick={showShopCar}>
+        <View className='goodsLength'>{basicInfoArray.length ? basicInfoArray.length:null}</View>
         <Image src={shopCar} />
       </View>
       <View className='location'>
@@ -159,42 +221,11 @@ function Index () {
         </ScrollView>
       </View>
       <AtFloatLayout scrollY isOpened={carShow} onClose={hideShopCar}>
-        <View className='shopCarCard'>
-          <View className='shopCarCardIcon'>
-            <Image src={goodsImage} />
-          </View>
-          <View className='shopCarCardContent'>
-            <View className='shopCarCardTitle'>
-              【宝骏560原配】全新德国马牌轮胎是的是的的是多少度爱是
-            </View>
-            <View className='shopCarCardBody'>
-              <View className='tireTag'>
-                xx轮胎系列
-              </View>
-              <View className='tireTag'>
-                xx花纹系列
-              </View>
-            </View>
-            <View className='shopCarCardBottom'>
-              <View className='shopCarCardPrice'>
-                ¥ 800
-              </View>
-              <View className='shopCarCount'>
-                <AtInputNumber 
-                  min={0} 
-                  max={999}
-                  step={1}
-                  value={goodsCount}
-                  onChange={goodsCountChange}
-                />
-              </View>
-            </View>
-          </View>
-        </View>
+        {goodsCarList}
         <View style={{width:'100%',height:'51px'}}></View>
         <View className='orderBottom'>
           <View className='orderPrice'>
-            合计: <Text>¥ 800</Text>
+            合计: <Text>¥ {price}</Text>
           </View>
           <View className='orderBottomButton' onClick={toConfirmOrder}>
             去支付

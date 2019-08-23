@@ -1,14 +1,20 @@
-import Taro, {useState} from '@tarojs/taro'
+import Taro, {useState, useDidShow} from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
 import location from 'assets/locationIcon.png'
 import colorfulLine from 'assets/colorfulLine.png'
 import right from 'assets/right.png'
 import circle from 'assets/circle.png'
 import choose from 'assets/choose.png'
-import goodsImage from 'assets/goodsImage.png'
 import './index.scss'
 
 function ConfirmOrder() {
+
+  const [productData, setProductData] = useState([])
+  const [price, setPrice] = useState(0)
+  useDidShow(() => {
+    setProductData(Taro.getStorageSync('basicInfoArray') || [])
+    setPrice(Taro.getStorageSync('price'))
+  })
 
   const timeListData = [{
     id: 0,
@@ -62,45 +68,27 @@ function ConfirmOrder() {
     )
   })
 
-  const productData = [{
-    id: 0,
-    goodsName: '【宝骏560原配】全新德国马牌轮胎是的是的的是多少度爱是',
-    goodsImage: '',
-    tire: 'XX轮胎系列',
-    pattern: 'XX花纹系列',
-    price: '800',
-    count: 1,
-  },{
-    id: 1,
-    goodsName: '【宝骏560原配】全新德国马牌轮胎是的是的的是多少度爱是',
-    goodsImage: '',
-    tire: 'XX轮胎系列',
-    pattern: 'XX花纹系列',
-    price: '600',
-    count: 3,
-  }]
-
   const product = productData.map((item) => {
     return (
       <View className='shopCarCard' key={item.id}>
         <View className='shopCarCardIcon'>
-          <Image src={goodsImage} />
+          <Image src={item.pic} />
         </View>
         <View className='shopCarCardContent'>
           <View className='shopCarCardTitle'>
-            {item.goodsName}
+            {item.name}
           </View>
           <View className='shopCarCardBody'>
             <View className='tireTag'>
-              {item.tire}
+              {item.tyreTag}
             </View>
             <View className='tireTag'>
-              {item.pattern}
+              {item.patternTag}
             </View>
           </View>
           <View className='shopCarCardBottom'>
             <View className='shopCarCardPrice'>
-              ¥ {item.price}
+              ¥ {item.originalPrice}
             </View>
             <View className='shopCarCount'>
               X {item.count}
@@ -196,7 +184,7 @@ function ConfirmOrder() {
       </View>
       <View className='orderBottom'>
         <View className='orderPrice'>
-          合计: <Text>¥800</Text>
+          合计: <Text>¥ {price}</Text>
         </View>
         <View className='orderBottomButton' onClick={toWaitInstall}>
           去支付

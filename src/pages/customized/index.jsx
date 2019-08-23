@@ -92,10 +92,7 @@ function Customized() {
   const toGoodsCar = () => {
     Taro.setStorage({
       key: 'basicInfo',
-      data: basicInfo
-    })
-    .then(() => {
-      Taro.setStorageSync('chooseData', priceData)
+      data: Object.assign(basicInfo, priceData)
     })
     .then(() => {
       Taro.switchTab({
