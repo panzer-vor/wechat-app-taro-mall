@@ -11,3 +11,5 @@ export const GET_SHOP_LIST = 'GET_SHOP_LIST'
 export const GET_DIRECTION = 'GET_DIRECTION'
 
 export const RESET_MAP = 'RESET_MAP'
+
+export const SELECT_SHOP = 'SELECT_SHOP'

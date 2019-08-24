@@ -1,28 +1,16 @@
 import Taro from '@tarojs/taro'
-import { View, Button, Text } from '@tarojs/components'
-import { useSelector, useDispatch } from '@tarojs/redux'
-
-import { add, minus, asyncAdd } from 'actions/counter'
+import { View, Text, Button } from '@tarojs/components'
+import { useSelector } from '@tarojs/redux'
+import { linkTo } from 'utils/tools'
 
 function List () {
   
-  const dispatch = useDispatch()
-
-  const counter = useSelector(state => state.counter)
-
-  const Add = () => dispatch(add())
-
-  const Dec = () => dispatch(minus())
-
-  const AsyncAdd = () => dispatch(asyncAdd())
+  const address = useSelector(state => state.address)
 
   return (
     <View className='index'>
-      <Button className='add_btn' onClick={Add}>+</Button>
-      <Button className='dec_btn' onClick={Dec}>-</Button>
-      <Button className='dec_btn' onClick={AsyncAdd}>async</Button>
-      <View><Text>{counter.num}</Text></View>
-      <View><Text>Hello, World</Text></View>
+      <Button onClick={linkTo('address')}>点击跳转地图</Button>
+      <View><Text>{JSON.stringify(address.selectedShop)}</Text></View>
     </View>
   )
 }
