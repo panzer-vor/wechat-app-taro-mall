@@ -1,54 +1,30 @@
-import Taro, { useEffect, useReducer } from '@tarojs/taro'
+import Taro, { useEffect } from '@tarojs/taro'
 import { Map, View, Image, Text } from '@tarojs/components'
+import { useSelector, useDispatch } from '@tarojs/redux'
+import { setLocation, getSearchItems, } from 'actions/address'
 import Search from 'components/search/index'
 import icon from 'assets/locationIcon.png'
 import './index.scss'
 
-const mapData = {
-  markers: [{
-    id: 0,
-    latitude: 23.099994,
-    longitude: 113.324520,
-    width: 50,
-    height: 50
-  }],
-  longitude: 0,
-  latitude: 0,
-}
-function reducer(state, action) {
-  const { type, payload } = action
-  switch (type) {
-    case 'setLocation':
-      const { latitude, longitude } = payload
-      return {
-        ...state,
-        latitude,
-        longitude,
-      };
-    default:
-      return state
-  }
-}
 function Address () {
+  const address = useSelector(state => state.address)
+  
+  const dispatch = useDispatch()
 
-  const regionchange = (e) => console.log(e.type)
+  const onSearchKeyword = (e) => {
+    const value = e.currentTarget.value
+    getsuggest(value)
+  }
 
-  const makerTap = (e) => console.log(e.markerId)
+  const getsuggest = keyword => {
+    dispatch(getSearchItems(keyword))
+  }
 
-  const controlTap = (e) => console.log(e.controlId)
 
-  const [state, dispatch] = useReducer(reducer, mapData)
+  const makerTap = (e) => console.log(e)
 
   useEffect(() => {
-
-    Taro.getLocation({
-      type: 'wgs84'
-    })
-      .then((res) => dispatch({
-        type: 'setLocation',
-        payload: res
-      }))
-    
+    dispatch(setLocation())
   }, [])
 
   return (
@@ -56,33 +32,41 @@ function Address () {
       <View className='search--wrapper'>
         <Search 
           placeholder='搜索地址'
+          onChange={onSearchKeyword}
+          keywords={address.keywords}
         />
       </View>
-      <View className='map--wrapper'>
-        <View className='address'>
-          <Image src={icon} />
-          <Text>福建省厦门市湖里区</Text>
+      {
+        !address.keywords.length && <View>
+          <View className='map--wrapper'>
+            <View className='address'>
+              <Image src={icon} />
+              <Text>{address.title}</Text>
+            </View>
+            <Map
+              id='map' 
+              longitude={address.longitude} 
+              latitude={address.latitude} 
+              scale='14' 
+              markers={address.markers}
+              onMarkertap={makerTap} 
+              show-location
+              style='width: 100%; height: 300px;' 
+            />
+          </View>
+          <View className='address--list'>
+            <Text className='sub'>附近安装点</Text>
+            {
+              address.shopList.map(v => (
+                <View className='item' key={v.id}>
+                  <Text>{v.address}</Text>
+                  <Text className='master'>{v.name} {v.linkPhone}</Text>
+                </View>
+              ))
+            }
+          </View>
         </View>
-        <Map 
-          id='map' 
-          longitude={state.longitude} 
-          latitude={state.latitude} 
-          scale='14' 
-          bindcontroltap={controlTap} 
-          markers={mapData.markers}
-          bindmarkertap={makerTap} 
-          bindregionchange={regionchange}
-          show-location
-          style='width: 100%; height: 300px;' 
-        />
-      </View>
-      <View className='address--list'>
-        <Text className='sub'>附近安装点</Text>
-        <View className='item'>
-          <Text>福建省厦门市湖里区蔡塘学校46号</Text>
-          <Text className='master'>半身瓜（先生） 15822064578</Text>
-        </View>
-      </View>
+      }
     </View>
   )
 }

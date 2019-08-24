@@ -79,7 +79,7 @@ class App extends Component {
             .then(event => {
               console.log(event.msg)
             })
-          }
+          },
         })
       }
     })
