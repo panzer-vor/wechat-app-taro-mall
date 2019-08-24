@@ -9,3 +9,5 @@ export const SELECT_KEYWORD = 'SELECT_KEYWORD'
 export const GET_SHOP_LIST = 'GET_SHOP_LIST'
 
 export const GET_DIRECTION = 'GET_DIRECTION'
+
+export const RESET_MAP = 'RESET_MAP'

@@ -1,5 +1,6 @@
 import addressPath from 'assets/address.png'
-import { GET_SEARCH_ITEMS, DELETE_SEARCH_ITEMS, SET_LOCATION, SELECT_KEYWORD, GET_SHOP_LIST, GET_DIRECTION } from '../constants/address'
+import addressSelectPath from 'assets/address_select.png'
+import { GET_SEARCH_ITEMS, DELETE_SEARCH_ITEMS, SET_LOCATION, SELECT_KEYWORD, GET_SHOP_LIST, GET_DIRECTION, RESET_MAP } from '../constants/address'
 
 const INITIAL_STATE = {
   keywords: [],
@@ -8,7 +9,8 @@ const INITIAL_STATE = {
   title: '您当前的位置',
   longitude: 0,
   latitude: 0,
-  direction: {}
+  direction: [],
+  addressSelect: {},
 }
 
 export default (state = INITIAL_STATE, { type, payload }) => {
@@ -34,6 +36,16 @@ export default (state = INITIAL_STATE, { type, payload }) => {
         const { lat: latitude, lng: longitude } = location
         return {
           ...state,
+          addressSelect: {
+            longitude,
+            latitude,
+            id: 0,
+            width: 20,
+            height: 20,
+            title,
+            iconPath: addressSelectPath, 
+          },
+          direction: [],
           longitude,
           latitude,
           title,
@@ -58,8 +70,14 @@ export default (state = INITIAL_STATE, { type, payload }) => {
           }
         }
       case GET_DIRECTION:
+        const direction = [payload]
         return {
           ...state,
+          direction,
+        }
+      case RESET_MAP:
+        return {
+          ...INITIAL_STATE,
         }
       default:
         return state

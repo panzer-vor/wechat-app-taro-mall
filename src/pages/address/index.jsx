@@ -1,7 +1,7 @@
 import Taro, { useEffect } from '@tarojs/taro'
 import { Map, View, Image, Text } from '@tarojs/components'
 import { useSelector, useDispatch } from '@tarojs/redux'
-import { setLocation, getSearchItems, } from 'actions/address'
+import { setLocation, getSearchItems, getDirection, resetMap } from 'actions/address'
 import Search from 'components/search/index'
 import icon from 'assets/locationIcon.png'
 import './index.scss'
@@ -20,12 +20,28 @@ function Address () {
     dispatch(getSearchItems(keyword))
   }
 
-
-  const makerTap = (e) => console.log(e)
+  const makerTap = (e) => {
+    address.markers.map(v => {
+      if (v.id === e.markerId) {
+        const from = {
+          latitude: address.latitude,
+          longitude: address.longitude,
+        }
+        const to = {
+          latitude: v.latitude,
+          longitude: v.longitude,
+        }
+        dispatch(getDirection(from, to))
+      }
+    })
+  }
 
   useEffect(() => {
     dispatch(setLocation())
+    return () => dispatch(resetMap())
   }, [])
+
+  const markers = [...address.markers, address.addressSelect]
 
   return (
     <View className='index'>
@@ -47,9 +63,10 @@ function Address () {
               id='map' 
               longitude={address.longitude} 
               latitude={address.latitude} 
-              scale='14' 
-              markers={address.markers}
-              onMarkertap={makerTap} 
+              scale='8' 
+              markers={markers}
+              onMarkertap={makerTap}
+              polyline={address.direction}
               show-location
               style='width: 100%; height: 300px;' 
             />
