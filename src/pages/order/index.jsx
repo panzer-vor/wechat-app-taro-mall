@@ -1,8 +1,8 @@
-import Taro, { useRouter, useDidShow } from '@tarojs/taro'
+import Taro, { useRouter, useDidShow, useEffect } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import Tab from 'components/tab/index'
 import Goods from 'components/goods/index'
-import { switchCurrent } from 'actions/order'
+import { switchCurrent, getOrderList } from 'actions/order'
 import { useDispatch, useSelector } from '@tarojs/redux'
 import l from 'assets/goodsImage.png'
 import none from 'assets/order-none.png'
@@ -37,6 +37,10 @@ function Order () {
   useDidShow(() => {
     dispatch(switchCurrent(router.params.status))
   })
+
+  useEffect(() => {
+    dispatch(getOrderList())
+  }, [])
 
   return (
     <View>

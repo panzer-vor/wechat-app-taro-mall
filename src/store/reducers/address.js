@@ -1,7 +1,7 @@
 import addressPath from 'assets/address.png'
 import addressSelectPath from 'assets/address_select.png'
 import { GET_SEARCH_ITEMS, DELETE_SEARCH_ITEMS, 
-  SET_LOCATION, SELECT_KEYWORD, GET_SHOP_LIST, GET_DIRECTION, RESET_MAP, SELECT_SHOP } from '../constants/address'
+  SET_LOCATION, SELECT_KEYWORD, GET_SHOP_LIST, GET_DIRECTION, RESET_STATE_WITHOUT_SELECTED_SHOP, SELECT_SHOP, RESRT_STATE } from '../constants/address'
 
 const INITIAL_STATE = {
   keywords: [],
@@ -77,7 +77,7 @@ export default (state = INITIAL_STATE, { type, payload }) => {
           ...state,
           direction,
         }
-      case RESET_MAP:
+      case RESET_STATE_WITHOUT_SELECTED_SHOP:
         return {
           ...INITIAL_STATE,
           selectedShop: state.selectedShop
@@ -86,6 +86,10 @@ export default (state = INITIAL_STATE, { type, payload }) => {
         return {
           ...state,
           selectedShop: payload,
+        }
+      case RESRT_STATE:
+        return {
+          ...INITIAL_STATE
         }
       default:
         return state

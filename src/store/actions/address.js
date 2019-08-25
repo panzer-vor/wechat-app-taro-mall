@@ -2,7 +2,8 @@ import Taro from '@tarojs/taro'
 import QQMapWX from 'utils/qqmap-wx-jssdk'
 import { post } from 'utils/request'
 import { WX_MAP_KEY } from 'config/globalConfig'
-import { GET_SEARCH_ITEMS, SELECT_KEYWORD, SET_LOCATION, GET_SHOP_LIST, GET_DIRECTION, RESET_MAP, SELECT_SHOP } from '../constants/address.js'
+import { GET_SEARCH_ITEMS, SELECT_KEYWORD, SET_LOCATION, 
+  GET_SHOP_LIST, GET_DIRECTION, RESET_STATE_WITHOUT_SELECTED_SHOP, SELECT_SHOP, RESRT_STATE } from '../constants/address'
 
 const qqmapsdk = new QQMapWX({
   key: WX_MAP_KEY
@@ -85,11 +86,15 @@ export const getDirection = (from, to) => async dispatch => {
   })
 }
 
-export const resetMap = () => ({
-  type: RESET_MAP,
+export const resetMapWithoutSelectedShop = () => ({
+  type: RESET_STATE_WITHOUT_SELECTED_SHOP,
 })
 
 export const selectShop = (item) => ({
   type: SELECT_SHOP,
   payload: item,
+})
+
+export const resetState = () => ({
+  type: RESRT_STATE,
 })

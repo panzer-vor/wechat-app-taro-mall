@@ -1,7 +1,7 @@
 import Taro, { useEffect } from '@tarojs/taro'
 import { Map, View, Image, Text } from '@tarojs/components'
 import { useSelector, useDispatch } from '@tarojs/redux'
-import { setLocation, getSearchItems, getDirection, resetMap, selectShop } from 'actions/address'
+import { setLocation, getSearchItems, getDirection, resetMapWithoutSelectedShop, selectShop } from 'actions/address'
 import { linkBack } from 'utils/tools'
 import * as R from 'ramda'
 import Search from 'components/search/index'
@@ -51,7 +51,7 @@ function Address () {
 
   useEffect(() => {
     dispatch(setLocation())
-    return () => dispatch(resetMap())
+    return () => dispatch(resetMapWithoutSelectedShop())
   }, [])
 
   const markers = [...address.markers, address.addressSelect]

@@ -1,7 +1,25 @@
 import Taro from '@tarojs/taro'
+import * as R from 'ramda'
 import {
   PUBLIC_URL
 } from 'config/globalConfig'
+
+
+const optionDefault = {
+  data: {},
+  contentType: 'json',
+  publicUrl: PUBLIC_URL,
+  loading: true,
+}
+
+const handleOptions = R.ifElse(
+  R.compose(
+    R.equals('String'),
+    R.type,
+  ),
+  R.assoc('uri', R.__, optionDefault),
+  R.merge(optionDefault)
+)
 
 const ContentType = {
   'json': 'application/json',
@@ -9,16 +27,12 @@ const ContentType = {
   'formData': 'multipart/form-data',
 }
 
-export const request = (method = 'GET') => 
-({
-  uri,
-  data,
-  contentType = 'json',
-  publicUrl = PUBLIC_URL,
-  loading = true,
-}) => 
+export const request = (method = 'GET') => options => 
   new Promise((resolve, reject) => {
+    const { uri, data, contentType, publicUrl, loading } = handleOptions(options)
+
     loading && Taro.showLoading({title: '加载中，请稍候'})
+
     Taro.request({
       url: `${publicUrl}${uri}`,
       data,
@@ -49,7 +63,9 @@ export const request = (method = 'GET') =>
       }
     })
   })
+  
 
 export const get = request()
 
 export const post = request('POST')
+
