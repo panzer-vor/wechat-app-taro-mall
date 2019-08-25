@@ -16,7 +16,7 @@ export default function Search ({
       {
         tabList.map((v, i) => (
           <View 
-            className={`item ${i === current ? 'active' : ''}`} 
+            className={`item ${i === current ? 'active' : ''}`}
             key={`tab${i}`}
             onClick={() => onTabClick(i)}
           >

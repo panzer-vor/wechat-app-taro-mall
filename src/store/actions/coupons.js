@@ -11,7 +11,7 @@ export const switchCurrent = (index) => ({
 })
 
 export const getAllCoupons = () => async dispatch => {
-  const res = await get({ uri: 'discounts/coupons' })
+  const res = await get('discounts/coupons')
   const maxNumber = res.data.moneyHreshold
   const { type, name, id, dateEnd, dateEndDays } = res.data
 

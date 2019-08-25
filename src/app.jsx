@@ -91,7 +91,11 @@ class App extends Component {
                 })
               }
             })
+<<<<<<< HEAD
           })
+=======
+          },
+>>>>>>> 9379d51cf33b49d6529c6270236fc6ce84289379
         })
       }
     })

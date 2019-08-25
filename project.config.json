@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 6,
 			"list": [
 				{
 					"id": 0,
@@ -57,15 +57,15 @@
 				},
 				{
 					"id": 3,
-					"name": "confirmOrder",
-					"pathName": "pages/confirmOrder/index",
+					"name": "customized",
+					"pathName": "pages/customized/index",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": 4,
-					"name": "BrandDetails",
-					"pathName": "pages/brandDetails/index",
+					"name": "address",
+					"pathName": "pages/address/index",
 					"query": "",
 					"scene": null
 				},
@@ -74,6 +74,12 @@
 					"name": "index",
 					"pathName": "pages/index/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "list",
+					"pathName": "pages/list/index",
 					"scene": null
 				}
 			]

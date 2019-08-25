@@ -13,3 +13,5 @@ export const linkTo = R.compose(
   ([pageUri, params]) => ({ url: `/pages/${pageUri}/index${params ? `?${params}` : ''}` }),
   R.split('?'),
 )
+
+export const linkBack = Taro.navigateBack

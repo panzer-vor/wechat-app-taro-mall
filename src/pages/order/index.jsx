@@ -1,8 +1,8 @@
-import Taro, { useRouter, useDidShow } from '@tarojs/taro'
+import Taro, { useRouter, useDidShow, useEffect } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import Tab from 'components/tab/index'
-import Good from 'components/good/index'
-import { switchCurrent } from 'actions/order'
+import Goods from 'components/goods/index'
+import { switchCurrent, getOrderList } from 'actions/order'
 import { useDispatch, useSelector } from '@tarojs/redux'
 import l from 'assets/goodsImage.png'
 import none from 'assets/order-none.png'
@@ -38,6 +38,10 @@ function Order () {
     dispatch(switchCurrent(router.params.status))
   })
 
+  useEffect(() => {
+    dispatch(getOrderList())
+  }, [])
+
   return (
     <View>
       <Tab tabList={tabList} tabClick={tabClick} current={order.current} />
@@ -56,7 +60,7 @@ function Order () {
               </View>
               <View className='body'>
                 <View className='content'>
-                  <Good 
+                  <Goods 
                     image={l} 
                     title='【宝骏560原配】全新德国马牌轮胎'
                     cates={['XX轮胎系列', 'XX花纹系列']}

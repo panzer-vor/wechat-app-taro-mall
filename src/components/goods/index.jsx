@@ -2,7 +2,7 @@ import Taro from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import './index.scss'
 
-function Good ({
+function Goods ({
   image,
   title,
   cates = [],
@@ -34,4 +34,4 @@ function Good ({
   )
 }
 
-export default Good
+export default Goods

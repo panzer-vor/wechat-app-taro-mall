@@ -1,2 +1,3 @@
 export const SWITCH_CURRENT = 'SWITCH_CURRENT'
 
+export const GET_ORDER_LIST = 'GET_ORDER_LIST'
