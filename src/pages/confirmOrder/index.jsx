@@ -1,14 +1,38 @@
-import Taro, {useState, useDidShow} from '@tarojs/taro'
+import Taro, {useState, useEffect, useDidShow} from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
 import location from 'assets/locationIcon.png'
 import colorfulLine from 'assets/colorfulLine.png'
 import right from 'assets/right.png'
 import circle from 'assets/circle.png'
 import choose from 'assets/choose.png'
+import { post } from 'utils/request'
 import './index.scss'
 
 function ConfirmOrder() {
 
+  const login = () => {
+    Taro.login({
+      success:res => {
+        post({
+          uri: 'user/wxapp/login',
+          data: {
+            code:res.code
+          },
+          contentType: 'form'
+        })
+        .then(resolve => {
+          console.log(resolve)
+          setToken(resolve.data.token)
+        })
+      }
+    })
+  }
+
+  useEffect(() => {
+    login()
+  },[])
+
+  const [token, setToken] = useState('')
   const [productData, setProductData] = useState([])
   const [price, setPrice] = useState(0)
   useDidShow(() => {
@@ -102,8 +126,86 @@ function ConfirmOrder() {
   const [invoice, setInvoice] = useState(true)
 
   const toWaitInstall = () => {
-    Taro.navigateTo({
-      url: '/pages/waitInstall/index'
+
+    let goodsJsonStr = '['
+    productData.forEach((v, i) => {
+      v.propertyChildIds = v.propertyChildIds.slice(0, -1)
+      let obj = ''
+      if (i > 0) {
+        obj = ','
+      }
+      obj += '{"goodsId":' + v.goodsId + ',"number":' + v.count + ',"propertyChildIds":' + "'" + v.propertyChildIds + "'" + ',"logisticsType":0, "inviter_id":0' + '}';
+      goodsJsonStr += obj
+    })
+    goodsJsonStr += ']'
+    
+    post({
+      uri: 'order/create',
+      data: {
+        goodsJsonStr,
+        price,
+        token
+      },
+      contentType: 'form'
+    })
+    .then(res => {
+      if (res.code === 2000) {
+        Taro.showModal({
+          content: '获取token失败,请重试',
+          showCancel: false,
+          success: e => {
+            if(e.confirm) {
+              login()
+            }
+          }
+        })
+        return
+      }
+      if (res.code === 60001){
+        Taro.showModal({
+          content: '库存不足',
+          showCancel: false
+        })
+        return
+      }
+      if (res.code === 0) {
+        post({
+          uri: 'pay/wx/wxapp',
+          data: {
+            money: price,
+            token
+          },
+          contentType: 'form'
+        })
+        .then(pay => {
+          Taro.requestPayment({
+            timeStamp: pay.data.timeStamp,
+            nonceStr: pay.data.nonceStr,
+            package: 'prepay_id=' + pay.data.prepayId,
+            signType: 'MD5',
+            paySign: pay.data.sign,
+            success: () => {
+              post({
+                uri: 'order/pay',
+                data: {
+                  orderId: res.data.id,
+                  token
+                },
+                contentType: 'form'
+              })
+              .then(payMent => {
+                if(payMent.code === 0) {
+                  Taro.removeStorageSync('basicInfoArray')
+                  Taro.removeStorageSync('price')
+                  Taro.redirectTo({
+                    url: '/pages/order/index'
+                  })
+                }
+              })
+            }
+          })
+        })
+      }
     })
   }
 

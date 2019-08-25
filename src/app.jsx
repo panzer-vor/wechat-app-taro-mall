@@ -1,8 +1,8 @@
 import '@tarojs/async-await'
 import Taro, { Component } from '@tarojs/taro'
 import { Provider } from '@tarojs/redux'
-import {post} from 'utils/request'
 import Index from './pages/index'
+import { post } from './utils/request'
 import configStore from './store'
 
 import './app.scss'
@@ -30,7 +30,8 @@ class App extends Component {
       'pages/join/index',
       'pages/confirmOrder/index',
       'pages/waitInstall/index',
-      'pages/brandDetails/index'
+      'pages/brandDetails/index',
+      'pages/userInfo/index'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -61,25 +62,36 @@ class App extends Component {
     },
   }
 
+
   componentDidMount () {
-    Taro.login({
-      success: function(res) {
-        Taro.getUserInfo({
-          success: function(resolve) {
-            Taro.setStorageSync('userInfo', resolve.userInfo)
+    Taro.getSetting({
+      success: res => {
+        if (!res.authSetting['scope.userInfo']) {
+          Taro.reLaunch({
+            url: '/pages/userInfo/index'
+          })
+          return
+        }
+        Taro.login({
+          success: (resolve => {
             post({
-              uri: 'user/wxapp/register/complex',
+              uri: 'user/wxapp/login',
               data: {
-                code: res.code,
-                encryptedData: resolve.encryptedData,
-                iv: resolve.iv
+                code: resolve.code
               },
               contentType: 'form'
             })
             .then(event => {
-              console.log(event.msg)
+              if (event.code === 0) {
+                Taro.setStorageSync('token', event.data.token)
+              } else {
+                Taro.showModal({
+                  content: event.msg,
+                  showCancel: false
+                })
+              }
             })
-          }
+          })
         })
       }
     })
