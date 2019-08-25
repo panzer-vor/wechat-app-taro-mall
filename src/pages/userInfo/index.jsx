@@ -2,9 +2,12 @@ import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtButton } from 'taro-ui'
 import { post } from 'utils/request'
+import { useDispatch } from '@tarojs/redux'
+import { setUserInfo, setToken } from 'actions/global'
 import './index.scss'
 
 function GetUserInfo() {
+  const dispatch = useDispatch()
 
   const getToken = () => {
     Taro.login({
@@ -17,6 +20,7 @@ function GetUserInfo() {
           contentType: 'form'
         })
         .then(resolve => {
+          dispatch(setToken(resolve.data.token))
           Taro.setStorageSync('token', resolve.data.token)
         })
       }
@@ -30,6 +34,7 @@ function GetUserInfo() {
           success: function(res) {
             Taro.getUserInfo({
               success: function(resolve) {
+                dispatch(setUserInfo(resolve.userInfo))
                 Taro.setStorageSync('userInfo', resolve.userInfo)
                 post({
                   uri: 'user/wxapp/register/complex',

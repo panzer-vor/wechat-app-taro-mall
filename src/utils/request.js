@@ -67,5 +67,7 @@ export const request = (method = 'GET') => options =>
 
 export const get = request()
 
-export const post = request('POST')
-
+export const post = R.compose(
+  request('POST'),
+  R.merge({ contentType: 'form' }),
+)

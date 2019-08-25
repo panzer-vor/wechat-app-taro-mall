@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 7,
 			"list": [
 				{
 					"id": 0,
@@ -80,6 +80,14 @@
 					"id": -1,
 					"name": "list",
 					"pathName": "pages/list/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 7,
+					"name": "confirmOrder",
+					"pathName": "pages/confirmOrder/index",
+					"query": "",
 					"scene": null
 				}
 			]

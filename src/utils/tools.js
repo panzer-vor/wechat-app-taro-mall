@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro'
 import dayjs from 'dayjs'
 import * as R from 'ramda'
+import { post } from './request'
 
 export const dateDiffDay = (d1, d2) => {
   const day1 = dayjs(d1)
@@ -15,3 +16,23 @@ export const linkTo = R.compose(
 )
 
 export const linkBack = Taro.navigateBack
+
+export const getToken = () => 
+  new Promise(resolve => {
+    Taro.login({
+      success:res => {
+        post({
+          uri: 'user/wxapp/login',
+          data: {
+            code:res.code
+          },
+          contentType: 'form'
+        })
+        .then(response => {
+          resolve(response.data.token)
+        })
+      }
+    })
+  })
+
+  

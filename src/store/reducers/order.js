@@ -1,7 +1,9 @@
-import { SWITCH_CURRENT } from '../constants/order'
+import { SWITCH_CURRENT, GET_ORDER_LIST, SET_CURRENT_LIST } from '../constants/order'
 
 const INITIAL_STATE = {
   current: 0,
+  list: [],
+  currentList: [],
 }
 
 export default (state = INITIAL_STATE, { type, payload }) => {
@@ -10,6 +12,16 @@ export default (state = INITIAL_STATE, { type, payload }) => {
       return {
         ...state,
         current: payload
+      }
+    case GET_ORDER_LIST:
+      return {
+        ...state,
+        list: payload,
+      }
+    case SET_CURRENT_LIST:
+      return {
+        ...state,
+        currentList: payload,
       }
      default:
        return state
