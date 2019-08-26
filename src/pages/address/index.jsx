@@ -20,10 +20,10 @@ function Address () {
 
   const onSearchKeyword = (e) => {
     const value = e.currentTarget.value
-    getsuggest(value)
+    getSuggest(value)
   }
 
-  const getsuggest = keyword => {
+  const getSuggest = keyword => {
     dispatch(getSearchItems(keyword))
   }
 
