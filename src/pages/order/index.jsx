@@ -24,7 +24,7 @@ function Order () {
   } 
   
   const goDetail = R.thunkify((status, id) => {
-    if (status !== 0) linkTo(`brandDetails?id=${id}`)()
+    if (status !== 0) linkTo(`waitInstall?orderId=${id}`)()
   })
 
   const goPay = R.thunkify(o => {

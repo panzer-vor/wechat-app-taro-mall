@@ -3,7 +3,7 @@ import { View } from '@tarojs/components'
 import { AtButton } from 'taro-ui'
 import { post } from 'utils/request'
 import { useDispatch } from '@tarojs/redux'
-import { setUserInfo, setToken } from 'actions/global'
+import { setUserInfo } from 'actions/global'
 import './index.scss'
 
 function GetUserInfo() {
@@ -20,7 +20,6 @@ function GetUserInfo() {
           contentType: 'form'
         })
         .then(resolve => {
-          dispatch(setToken(resolve.data.token))
           Taro.setStorageSync('token', resolve.data.token)
         })
       }

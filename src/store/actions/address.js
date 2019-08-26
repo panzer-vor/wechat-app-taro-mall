@@ -44,7 +44,7 @@ export const getSearchItems = keyword => async dispatch => {
 
 export const setLocation = () => async dispatch => {
   const response = await Taro.getLocation({
-    type: 'wgs84'
+    type: 'gcj02'
   })
   qqmapsdk.reverseGeocoder({
     location: response,

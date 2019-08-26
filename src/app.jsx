@@ -31,7 +31,8 @@ class App extends Component {
       'pages/confirmOrder/index',
       'pages/waitInstall/index',
       'pages/brandDetails/index',
-      'pages/userInfo/index'
+      'pages/userInfo/index',
+      'pages/userAddress/index',
     ],
     window: {
       backgroundTextStyle: 'light',
