@@ -22,7 +22,7 @@ function Coupons () {
   const couponsChoose = R.thunkify(item => {
     if (router.params.id) {
       dispatch(setSelectedCoupons(item))
-      linkBack()()
+      linkBack()
     }
   })
 

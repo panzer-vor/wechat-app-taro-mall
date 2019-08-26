@@ -2,14 +2,13 @@ import Taro, { useEffect } from '@tarojs/taro'
 import { Map, View, Image, Text } from '@tarojs/components'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { setLocation, getSearchItems, getDirection, resetMapWithoutSelectedShop, selectShop } from 'actions/address'
-import { linkBack } from 'utils/tools'
+import { linkTo } from 'utils/tools'
 import * as R from 'ramda'
 import Search from 'components/search/index'
 import icon from 'assets/locationIcon.png'
 import './index.scss'
 
 /**
- * TODO 对接上级页面所需地址
  * TODO 对店铺列表做范围限制
  */
 
@@ -46,7 +45,7 @@ function Address () {
 
   const selectItem = R.thunkify(item => {
     dispatch(selectShop(item))
-    linkBack()
+    linkTo('confirmOrder')()
   })
 
   useEffect(() => {
