@@ -27,7 +27,7 @@ export const getAllCoupons = () => async dispatch => {
     }
   })
 
-  const list = res.data.sort((a, b) => a.status - b.status)
+  const list = (res.data || []).sort((a, b) => a.status - b.status)
 
   const number = list.filter(v => v.status === 0).length
 

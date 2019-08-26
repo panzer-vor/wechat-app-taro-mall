@@ -1,6 +1,8 @@
 import Taro, { useState, useEffect, useDidShow } from '@tarojs/taro'
 import { View, Image, ScrollView, Text } from '@tarojs/components'
 import { AtFloatLayout } from "taro-ui"
+import { useDispatch, useSelector } from '@tarojs/redux'
+import { setLocation } from 'actions/address'
 import Banner from 'components/banner/index'
 import location from 'assets/locationIcon.png'
 import goodsImage from 'assets/goodsImage.png'
@@ -13,6 +15,10 @@ let basicInfo = {}
 let price = 0
 
 function Index () {
+  const addressState = useSelector(state => state.address)
+  
+  const dispatch = useDispatch()
+
 
   const [current, setCurrent] = useState(0)
   const [tabsList, setTabsList] = useState([])
@@ -35,6 +41,7 @@ function Index () {
   
   useEffect(() => {
     // 获取tabs
+    dispatch(setLocation())
     get({
       uri:'shop/goods/category/all'
     })
@@ -198,7 +205,7 @@ function Index () {
         <View className='locationIcon'>
           <Image src={location} />
         </View>
-        <View>福建省厦门市湖里区</View>
+        <View>{addressState.title}</View>
       </View>
       <View className='homeContent'>
         <View className='homeTabs'>

@@ -46,7 +46,7 @@ export const getOrderList = () => async (dispatch) => {
   })
   const { data } = response
 
-  const list = data.orderList
+  const list = (data.orderList || [])
     .map(v => ({
       ...v,
       goods: data.goodsMap[v.id].map(val => ({
