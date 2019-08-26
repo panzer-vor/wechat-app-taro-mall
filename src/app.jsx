@@ -32,7 +32,6 @@ class App extends Component {
       'pages/waitInstall/index',
       'pages/brandDetails/index',
       'pages/userInfo/index',
-      'pages/userAddress/index',
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -62,7 +61,6 @@ class App extends Component {
       }
     },
   }
-
 
   componentDidMount () {
     Taro.getSetting({

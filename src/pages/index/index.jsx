@@ -19,7 +19,6 @@ function Index () {
   
   const dispatch = useDispatch()
 
-
   const [current, setCurrent] = useState(0)
   const [tabsList, setTabsList] = useState([])
   const [cardList, setCardList] = useState([])
