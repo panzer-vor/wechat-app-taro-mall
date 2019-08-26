@@ -1,7 +1,9 @@
-import Taro from '@tarojs/taro'
+import Taro, { useEffect } from '@tarojs/taro'
+import { useSelector, useDispatch } from '@tarojs/redux'
 import { View, Image, Text } from '@tarojs/components'
+import { getOrderList } from 'actions/order'
+import { getAllCoupons } from 'actions/coupons'
 import { linkTo } from 'utils/tools'
-import testUser from 'assets/test-head.png'
 import pay from 'assets/user-pay.png'
 import install from 'assets/user-install.png'
 import arrow from 'assets/arrow.png'
@@ -14,6 +16,18 @@ import userHead from './bg'
 import './index.scss'
 
 function UserCenter () {
+  const {
+    order: orderState,
+    coupons: couponsState,
+    globalState,
+  } = useSelector(state => state)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getOrderList())
+    dispatch(getAllCoupons())
+  }, [])
 
   return (
     <View className='index'>
@@ -24,21 +38,21 @@ function UserCenter () {
         }}
       >
         <View className='user--head'>
-          <Image src={testUser} />
-          <Text>半身瓜</Text>
+          <Image src={globalState.userInfo.avatarUrl} />
+          <Text>{globalState.userInfo.nickName}</Text>
         </View>
         <View className='user--status'>
           <View className='item' onClick={linkTo('order?status=1')}>
             <Image src={pay} className='icon' />
             <Text className='status'>待付款</Text>
-            <Text className='number'>0</Text>
+            <Text className='number'>{orderState.orderNumberNotPay}</Text>
             <Image className='arrow' src={arrow} />
           </View>
           <View className='line' />
           <View className='item'  onClick={linkTo('order?status=2')}>
             <Image src={install} className='icon' />
             <Text className='status'>待安装</Text>
-            <Text className='number'>0</Text>
+            <Text className='number'>{orderState.orderNumberNotInstall}</Text>
             <Image className='arrow' src={arrow} />
           </View>
         </View>
@@ -51,13 +65,13 @@ function UserCenter () {
           </View>
           <Image className='arrow' src={arrow} />
         </View>
-        <View className='item' onClick={linkTo('coupons')}>
+        <View className='item' onClick={linkTo('coupons?status=0')}>
           <View className='left'>
             <Image src={ticket} />
             <Text>我的优惠券</Text>
           </View>
           <View className='right'>
-            <Text>0 张未使用</Text>
+            <Text>{couponsState.enableNumber} 张未使用</Text>
             <Image className='arrow' src={arrow} />
           </View>
         </View>

@@ -10,8 +10,15 @@ export const dateDiffDay = (d1, d2) => {
 }
 
 export const linkTo = R.compose(
-  R.thunkify(Taro.navigateTo),
-  ([pageUri, params]) => ({ url: `/pages/${pageUri}/index${params ? `?${params}` : ''}` }),
+  R.ifElse(
+    R.compose(
+      R.test(/^\/pages\/(index|userCenter)/),
+      R.prop('url'),
+    ),
+    R.thunkify(Taro.switchTab),
+    R.thunkify(Taro.navigateTo),
+  ),
+  ([pageUri, params]) => ({url:`/pages/${pageUri}/index${params ? `?${params}` : ''}`}),
   R.split('?'),
 )
 

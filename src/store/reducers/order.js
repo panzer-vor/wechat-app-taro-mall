@@ -1,9 +1,11 @@
-import { SWITCH_CURRENT, GET_ORDER_LIST, SET_CURRENT_LIST } from '../constants/order'
+import { SWITCH_CURRENT, GET_ORDER_LIST, SET_CURRENT_LIST, SET_ORDER_NUMBER } from '../constants/order'
 
 const INITIAL_STATE = {
   current: 0,
   list: [],
   currentList: [],
+  orderNumberNotPay: 0,
+  orderNumberNotInstall: 0,
 }
 
 export default (state = INITIAL_STATE, { type, payload }) => {
@@ -22,6 +24,11 @@ export default (state = INITIAL_STATE, { type, payload }) => {
       return {
         ...state,
         currentList: payload,
+      }
+    case SET_ORDER_NUMBER:
+      return {
+        ...state,
+        ...payload,
       }
      default:
        return state

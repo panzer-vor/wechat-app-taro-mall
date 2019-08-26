@@ -6,6 +6,7 @@ import {
   SWITCH_CURRENT,
   GET_ORDER_LIST,
   SET_CURRENT_LIST,
+  SET_ORDER_NUMBER,
 } from '../constants/order'
 
 const handleStatus = R.cond([
@@ -45,20 +46,26 @@ export const getOrderList = () => async (dispatch) => {
   })
   const { data } = response
 
-  const list = data.orderList.map(v => ({
-    ...v,
-    goods: data.goodsMap[v.id].map(val => ({
-      ...val,
-      property: val.property.split(',').map(p => p.split(':')[1])
-    })),
-    statusType: handleStatus(v.status),
-   }))
-   .sort((a, b) => b.status - a.status)
+  const list = data.orderList
+    .map(v => ({
+      ...v,
+      goods: data.goodsMap[v.id].map(val => ({
+        ...val,
+        property: val.property.split(',').map(p => p.split(':')[1])
+      })),
+      statusType: handleStatus(v.status),
+    }))
+    .sort((a, b) => b.status - a.status)
 
   dispatch({
     type: GET_ORDER_LIST,
     payload: list,
   })
+  
+  const notPayNumber = list.filter(v => v.status === 0).length
+  const notInstallNumber = list.filter(v => v.status === 1).length
+
+  dispatch(setOrderNumber(notPayNumber, notInstallNumber))
 
   dispatch(setCurrentList())
 } 
@@ -127,3 +134,11 @@ export const payOrder = order => async dispatch => {
     }
   })
 }
+
+export const setOrderNumber = (orderNumberNotPay = 0, orderNumberNotInstall = 0) => ({
+  type: SET_ORDER_NUMBER,
+  payload: {
+    orderNumberNotPay,
+    orderNumberNotInstall,
+  }
+})
