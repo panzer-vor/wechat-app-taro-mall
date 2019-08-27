@@ -46,6 +46,7 @@ export const setLocation = () => async dispatch => {
   const response = await Taro.getLocation({
     type: 'gcj02'
   })
+
   qqmapsdk.reverseGeocoder({
     location: response,
     success: (res) => {
@@ -56,9 +57,10 @@ export const setLocation = () => async dispatch => {
       }))
     }
   })
+
   dispatch({
     type: SET_LOCATION,
-    payload: {response},
+    payload: response,
   })
 
   dispatch(getShopList(response.longitude, response.longitude))

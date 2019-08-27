@@ -42,4 +42,17 @@ export const getToken = () =>
     })
   })
 
+export const handleStr = (str) => {
+  const catchArr = []
+  const catchedStr = str.matchAll(/(?<=\W+:)\w+[^\u0000-\u00FF]+/g)
+
+  let value = catchedStr.next()
+  while (value.value) {
+    catchArr.push(value.value[0])
+    value = catchedStr.next()
+  }
+
+  return catchArr
+}
+
   

@@ -36,6 +36,7 @@ export default (state = INITIAL_STATE, { type, payload }) => {
       {
         const { location, title } = payload
         const { lat: latitude, lng: longitude } = location
+
         return {
           ...state,
           addressSelect: {

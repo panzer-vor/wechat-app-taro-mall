@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import { post } from 'utils/request'
-import { getToken } from 'utils/tools'
+import { getToken, handleStr } from 'utils/tools'
 import * as R from 'ramda'
 import {
   SWITCH_CURRENT,
@@ -51,7 +51,7 @@ export const getOrderList = () => async (dispatch) => {
       ...v,
       goods: data.goodsMap[v.id].map(val => ({
         ...val,
-        property: val.property.split(',').map(p => p.split(':')[1])
+        property: handleStr(val.property),
       })),
       statusType: handleStatus(v.status),
     }))
