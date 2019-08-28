@@ -6,7 +6,7 @@ import * as R from 'ramda'
 import c from 'assets/coupons-c.png'
 import { switchCurrent, getAllCoupons, setCurrentList, setSelectedCoupons } from 'actions/coupons'
 import { useDispatch, useSelector } from '@tarojs/redux'
-import { linkTo, linkBack } from 'utils/tools'
+import { linkTo } from 'utils/tools'
 import { o, s} from './bg'
 import './index.scss'
 
@@ -24,7 +24,7 @@ function Coupons () {
   const couponsChoose = R.thunkify(item => {
     if (router.params.id) {
       dispatch(setSelectedCoupons(item))
-      linkBack()
+      linkTo()
     }
   })
 
