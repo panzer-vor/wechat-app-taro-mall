@@ -18,7 +18,7 @@ const handleOptions = R.ifElse(
     R.type,
   ),
   R.assoc('uri', R.__, optionDefault),
-  R.merge(optionDefault)
+  R.merge(optionDefault)  
 )
 
 const ContentType = {
